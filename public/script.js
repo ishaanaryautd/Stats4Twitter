@@ -1,6 +1,6 @@
 function testFunction(){
 	$.ajax({
-		url: "http://localhost:8080/data" ,
+		url: "/data" ,
 		data: {
 			"twitterUsername": "iamsrk"
 		},
