@@ -12,7 +12,7 @@ function getTweetsFromUsername(username){
         access_token_key: process.env.twitter_access_token_key,
         access_token_secret: process.env.twitter_access_token_secret
     });
-    console.log(username);
+
     var params = {
         screen_name : username,
         count : 5
