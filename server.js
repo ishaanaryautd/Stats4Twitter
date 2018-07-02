@@ -8,11 +8,11 @@ app.get('/', function(req,res,next){
 });
 
 app.get('/data', function(req,res,next){
-	console.log(req.query);
-	res.send(req.query);
-	module.exports = {
-		username: req.query.twitterUsername
-	}
+	//console.log(req.query);
+	var twitter = require('./twitter.js');
+	var tweets = twitter.getTweets(req.query.username);
+	console.log(tweets);
+	
 });
 
 app.set('port', (process.env.PORT || 8080));
