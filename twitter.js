@@ -15,7 +15,8 @@ function getTweetsFromUsername(username){
 
     var params = {
         screen_name : username,
-        count : 5
+        count : 5,
+        include_rts : false
     };
 
     t.get('statuses/user_timeline', params, function(err, tweets, response){
@@ -23,9 +24,12 @@ function getTweetsFromUsername(username){
             console.log("Could not get tweets " + err[0].message);
         }
         else{
-            console.log(tweets);
+            var tweets = "";
+            for(var i = 0; i < tweets.length; i++){
+                tweets = tweets + " " + tweets[i].text;
+            }
+            
         }
     });
 }
 
-    
