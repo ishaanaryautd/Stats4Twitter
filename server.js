@@ -8,9 +8,12 @@ app.get('/', function(req,res,next){
 });
 
 app.get('/data', function(req,res,next){
-	//console.log(req.query);
-	var twitter = require('./twitter.js');
-	var tweets = twitter.getTweets(req.query.username);
+
+
+	
+	var t = require('./twitter.js')
+	
+	var tweets = t.getTweets(req.query.username);
 	console.log(tweets);
 	
 });

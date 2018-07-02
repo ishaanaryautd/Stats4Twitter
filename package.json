@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ishaanaryautd/TwitterStats#readme",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "twitter": "^1.7.1"
   }
