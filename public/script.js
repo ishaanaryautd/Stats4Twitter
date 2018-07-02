@@ -1,13 +1,16 @@
 function testFunction(){
-	lol = {"ishaan": "1", "shlok": "2"};
-	lol = JSON.stringify(lol);
+	
+	//lol = JSON.stringify(lol);
 	$.ajax({
-		url: "/data" ,
-		data: lol,
+		url: "http://localhost:8080/data" ,
+		data: {
+			"ishaan": "1",
+			"shlok": "2"
+		},
 		method: "GET",
 		dataType: "json",
 		success: function(result) {
-			console.log(result)
+			console.log("success");
 		},
 		error: function() {
 			console.log("Something went wrong, data could not be fetched");
