@@ -14,7 +14,9 @@ app.get('/data', function(req,res,next){
 	var t = require('./twitter.js')
 	
 	var tweets = t.getTweets(req.query.username);
+	
 	console.log(tweets);
+	console.log(req.query.username);
 	
 });
 

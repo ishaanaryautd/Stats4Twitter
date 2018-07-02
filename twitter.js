@@ -7,12 +7,12 @@ module.exports = {
 function getTweetsFromUsername(username){
     var Twitter = require('twitter');
     var t = new Twitter({
-        consumer_key: process.env.consumer_key,
-        consumer_secret: process.env.consumer_secret,
-        access_token_key: process.env.access_token_key,
-        access_token_secret: process.env.access_token_secret
+        consumer_key: process.env.twitter_consumer_key,
+        consumer_secret: process.env.twitter_consumer_secret,
+        access_token_key: process.env.twitter_access_token_key,
+        access_token_secret: process.env.twitter_access_token_secret
     });
-
+    console.log(username);
     var params = {
         screen_name : username,
         count : 5
