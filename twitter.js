@@ -34,6 +34,12 @@ function getTweetsFromUsername(username){
 				reTweetsTotal += tweets[i].retweet_count;
             }
 			
+			var likesAverage = likesTotal/tweets.length;
+			var retweetsAverage = reTweetsTotal/tweets.length;
+			
+			//console.log(likesAverage);
+			//console.log(retweetsAverage);
+			
 			//****************************
 			//Do Watson stuff here with tweetText
 			///***************************
@@ -49,8 +55,8 @@ function getTweetsFromUsername(username){
 			var sortedByLikes = sortProperties(modifiedTweetsForLikes);
 			var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
 			
-			console.log(sortedByLikes);
-			console.log(sortedByRetweets);
+			//console.log(sortedByLikes);
+			//console.log(sortedByRetweets);
 			
 			var trimTop5Likes = [];
 			var trimTop5Retweets = [];
@@ -59,13 +65,13 @@ function getTweetsFromUsername(username){
 				trimTop5Likes.push((sortedByLikes[i])[0]);
 			}
 			
-			console.log(trimTop5Likes);
+			//console.log(trimTop5Likes);
 			
 			for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
 				trimTop5Retweets.push((sortedByRetweets[i])[0]);
 			}
 			
-			console.log(trimTop5Retweets);
+			//console.log(trimTop5Retweets);
 		
         }
     });
