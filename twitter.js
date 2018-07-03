@@ -48,7 +48,48 @@ function getTweetsFromUsername(username){
             likesTotal += tweets[i].favorite_count;
             reTweetsTotal += tweets[i].retweet_count;
         }
-        
+		
+/* 		function main(params) {
+			return new Promise(function (resolve, reject) {
+			var res = {};
+
+			const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+
+			var url = params.url || 'https://gateway.watsonplatform.net/personality-insights/api' ;
+			var use_unauthenticated =  params.use_unauthenticated || false ;
+
+			const personality_insights = new PersonalityInsightsV3({
+				'username': params.username,
+				'password': params.password,
+				'version_date': '2016-05-20',
+				'url' : url,
+				'use_unauthenticated': use_unauthenticated
+			});
+
+			personality_insights.profile({'text': params.textToAnalyze},
+				function(err, res) {
+					if (err)
+						reject(err);
+					else
+						resolve(res);
+				});
+			});
+		}
+
+		const defaultParameters = {
+			'textToAnalyze': tweetText,
+			'username':      '490dc133-beae-49c1-8e30-31a3f809261b',
+			'password':      'cyrRye4xUTjz',
+			'url' : 'https://gateway.watsonplatform.net/personality-insights/api',
+			'use_unauthenticated' : true
+		}
+
+		if (require.main === module)
+			main(defaultParameters)
+				.then((results) => console.log(JSON.stringify(results, null, 2)))
+				.catch((error) => console.log(error.message));
+ 
+		 */
         var likesAverage = likesTotal/tweets.length;
         var retweetsAverage = reTweetsTotal/tweets.length;
         //console.log(likesAverage);
