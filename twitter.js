@@ -75,18 +75,31 @@ function getTweetsFromUsername(username){
         for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
             trimTop5Retweets.push((sortedByRetweets[i])[0]);
         }
-        return trimTop5Likes;
+		
+		var returnData = {}
+		
+		returnData["LikesArray"] = trimTop5Likes;
+		returnData["RetweetsArray"] = trimTop5Retweets;
+		returnData["AverageLikes"] = likesAverage;
+		returnData["AverageRetweets"] = retweetsAverage;
+		
+        return returnData;
 
     }).then(function(data){
         //Now can work with trimtop5likes, since its in data
         
         var top5LikesIDs = "";
-        for(var i = 0; i < data.length; i++){
-            top5LikesIDs = top5LikesIDs + data[i] + ",";
+        for(var i = 0; i < data["LikesArray"].length; i++){
+            top5LikesIDs = top5LikesIDs + (data["LikesArray"])[i] + ",";
         }
         top5LikesIDs = top5LikesIDs.slice(0, -1);
         console.log(top5LikesIDs);
-t
+		var top5RetweetsIDs = "";
+        for(var i = 0; i < data["RetweetsArray"].length; i++){
+            top5RetweetsIDs = top5RetweetsIDs + (data["RetweetsArray"])[i] + ",";
+        }
+		top5RetweetsIDs = top5RetweetsIDs.slice(0, -1);
+		console.log(top5RetweetsIDs);
     }).catch(function(err){
         console.log("err: " + err);
     });
