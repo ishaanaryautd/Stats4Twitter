@@ -30,7 +30,6 @@ function getTweetsFromUsername(username){
 
     var params = {
         screen_name : username,
-        count : 10,
         include_rts : false,
 		tweet_mode: 'extended'
     };
@@ -103,9 +102,6 @@ function getTweetsFromUsername(username){
     }).catch(function(err){
         console.log("err: " + err);
     });
-
-    
-
 }
 
 //function from github https://gist.github.com/umidjons/9614157
