@@ -15,10 +15,20 @@ function tweetsByUser(twitterObj, params){
         });
      });
 }
+function tweetsByID(twitterObj, params){
+    return new Promise((resolve, reject) => {
+        twitterObj.get('statuses/lookup', params, (err, data) => {
+           if (err) {
+               reject(err);
+           } else {
+               resolve(data);
+           }
+        });
+     });
+}
+
 function watson(params) {
     return new Promise(function (resolve, reject) {
-        var res = {};
-
         const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 
         var url = params.url || 'https://gateway.watsonplatform.net/personality-insights/api' ;
@@ -32,7 +42,7 @@ function watson(params) {
             'use_unauthenticated': use_unauthenticated
         });
 
-        personality_insights.profile({'text': params.textToAnalyze},
+        personality_insights.profile({'content': params.textToAnalyze, content_type: 'text/plain'},
             function(err, res) {
                 if (err)
                     reject(err);
@@ -42,7 +52,6 @@ function watson(params) {
     });
 }
  
-
 //We will return json from this function with all the required things
 function getTweetsFromUsername(username){
 	
@@ -63,9 +72,8 @@ function getTweetsFromUsername(username){
     var trimTop5Likes = [];
 	var trimTop5Retweets = [];
 
-    var t = tweetsByUser(t, params);
 
-    t.then(function(tweets){
+    tweetsByUser(t, params).then(function(tweets){
         var tweetText = "";
         var likesTotal = 0;
         var reTweetsTotal = 0;
@@ -74,7 +82,8 @@ function getTweetsFromUsername(username){
             likesTotal += tweets[i].favorite_count;
             reTweetsTotal += tweets[i].retweet_count;
         }
-        
+
+        console.log("Running Watson: ");
         const defaultParameters = {
 			'textToAnalyze': tweetText,
 			'username':      '490dc133-beae-49c1-8e30-31a3f809261b',
@@ -82,18 +91,15 @@ function getTweetsFromUsername(username){
 			'url' : 'https://gateway.watsonplatform.net/personality-insights/api',
 			'use_unauthenticated' : true
 		}
-        console.log("Running Watson: ");
-
+        
 		if (require.main === module){
-            watson(defaultParameters)
-            .then((results) => console.log(JSON.stringify(results, null, 2)))
+            var data = watson(defaultParameters);
+            data.then((results) => console.log(JSON.stringify(results, null, 2)))
             .catch((error) => console.log(error.message));
-        }	
+        }
 
         var likesAverage = likesTotal/tweets.length;
         var retweetsAverage = reTweetsTotal/tweets.length;
-        //console.log(likesAverage);
-        //console.log(retweetsAverage);
         
         var modifiedTweetsForLikes = {};
         var modifiedTweetsForRetweets = {};
@@ -106,8 +112,6 @@ function getTweetsFromUsername(username){
         var sortedByLikes = sortProperties(modifiedTweetsForLikes);
         var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
         
-        //console.log(sortedByLikes);
-        //console.log(sortedByRetweets);
         
         for(var i = sortedByLikes.length - 1; i >= sortedByLikes.length - 5; i--){
             trimTop5Likes.push((sortedByLikes[i])[0]);
@@ -132,7 +136,14 @@ function getTweetsFromUsername(username){
             top5LikesIDs = top5LikesIDs + (data["LikesArray"])[i] + ",";
         }
         top5LikesIDs = top5LikesIDs.slice(0, -1);
+        console.log(top5LikesIDs);
+        var params = {
+            id : top5LikesIDs,
+            include_entities : true
+        }
+        // tweetsByID(params).then(function(tweets){
 
+        // })
 
 		var top5RetweetsIDs = "";
         for(var i = 0; i < data["RetweetsArray"].length; i++){
