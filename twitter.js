@@ -66,7 +66,8 @@ function getTweetsFromUsername(username){
     var params = {
         screen_name : username,
         include_rts : false,
-		tweet_mode: 'extended',
+        tweet_mode: 'extended',
+        count: 500
     };
 
     var trimTop5Likes = [];
@@ -74,29 +75,29 @@ function getTweetsFromUsername(username){
 
 
     tweetsByUser(t, params).then(function(tweets){
+        //console.log(tweets);
         var tweetText = "";
         var likesTotal = 0;
         var reTweetsTotal = 0;
+        console.log(tweets.length);
         for(var i = 0; i < tweets.length; i++){
-            tweetText = tweetText + " " + tweets[i].text;
+            tweetText = tweetText + " " + tweets[i].full_text;
             likesTotal += tweets[i].favorite_count;
             reTweetsTotal += tweets[i].retweet_count;
         }
-
-        console.log("Running Watson: ");
+        console.log(tweetText);
         const defaultParameters = {
-			'textToAnalyze': tweetText,
-			'username':      '490dc133-beae-49c1-8e30-31a3f809261b',
-			'password':      'cyrRye4xUTjz',
-			'url' : 'https://gateway.watsonplatform.net/personality-insights/api',
-			'use_unauthenticated' : true
+            'textToAnalyze': tweetText,
+            "url": "https://gateway.watsonplatform.net/personality-insights/api",
+            "username": "6f5ec39d-de4b-4098-af90-01c011a8ac8d",
+            "password": "U5hNHR12tzbm",
+			'use_unauthenticated' : false
 		}
-        
-		if (require.main === module){
-            var data = watson(defaultParameters);
-            data.then((results) => console.log(JSON.stringify(results, null, 2)))
-            .catch((error) => console.log(error.message));
-        }
+    
+
+        watson(defaultParameters).then(function(result){
+            console.log(result);
+        }).catch((error) => console.log(error.message));
 
         var likesAverage = likesTotal/tweets.length;
         var retweetsAverage = reTweetsTotal/tweets.length;
@@ -136,7 +137,7 @@ function getTweetsFromUsername(username){
             top5LikesIDs = top5LikesIDs + (data["LikesArray"])[i] + ",";
         }
         top5LikesIDs = top5LikesIDs.slice(0, -1);
-        console.log(top5LikesIDs);
+        //console.log(top5LikesIDs);
         var params = {
             id : top5LikesIDs,
             include_entities : true
@@ -150,7 +151,7 @@ function getTweetsFromUsername(username){
             top5RetweetsIDs = top5RetweetsIDs + (data["RetweetsArray"])[i] + ",";
         }
 		top5RetweetsIDs = top5RetweetsIDs.slice(0, -1);
-		console.log(top5RetweetsIDs);
+		//console.log(top5RetweetsIDs);
 
     }).catch(function(err){
         console.log("err: " + err);

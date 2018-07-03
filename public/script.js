@@ -2,7 +2,7 @@ function testFunction(){
 	$.ajax({
 		url: "/data" ,
 		data: {
-			"twitterUsername": "iamsrk"
+			"twitterUsername": "SrBachchan"
 		},
 		method: "GET",
 		dataType: "json",
