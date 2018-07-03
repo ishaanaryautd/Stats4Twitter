@@ -94,15 +94,18 @@ function getTweetsFromUsername(username){
 			'use_unauthenticated' : false
 		}
 		
-		var returnData = {}
+		
    
         watson(defaultParameters).then(function(result){
+            var returnData = {};
             //console.log(result);
 			returnData[(((result.personality)[0]).name)] = (((result.personality)[0]).percentile);
 			returnData[(((result.personality)[1]).name)] = (((result.personality)[1]).percentile);
 			returnData[(((result.personality)[2]).name)] = (((result.personality)[2]).percentile);
 			returnData[(((result.personality)[3]).name)] = (((result.personality)[3]).percentile);
-			returnData[(((result.personality)[4]).name)] = (((result.personality)[4]).percentile);
+            returnData[(((result.personality)[4]).name)] = (((result.personality)[4]).percentile);
+            //console.log(returnData);
+            return returnData;
         }).catch((error) => console.log(error.message));
 
         var likesAverage = likesTotal/tweets.length;
@@ -149,9 +152,10 @@ function getTweetsFromUsername(username){
             id : top5LikesIDs,
             include_entities : true
         }
-        // tweetsByID(params).then(function(tweets){
 
-        // })
+        tweetsByID(params).then(function(tweets){
+
+        })
 
 		var top5RetweetsIDs = "";
         for(var i = 0; i < data["RetweetsArray"].length; i++){
