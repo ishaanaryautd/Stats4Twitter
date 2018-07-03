@@ -15,19 +15,20 @@ function getTweetsFromUsername(username){
 
     var params = {
         screen_name : username,
-        count : 5,
         include_rts : false
     };
+    console.log(username);
 
     t.get('statuses/user_timeline', params, function(err, tweets, response){
         if(err){
-            console.log("Could not get tweets " + err[0].message);
+            console.log("Could not get tweets " + err);
         }
         else{
-            var tweets = "";
+            var tw = "";
             for(var i = 0; i < tweets.length; i++){
-                tweets = tweets + " " + tweets[i].text;
+                tw = tw + " " + tweets[i].text;
             }
+            console.log(tw)
             
         }
     });
