@@ -22,10 +22,11 @@ function getTweetsFromUsername(username){
         include_rts : false,
 		tweet_mode: 'extended'
     };
+    console.log(username);
 
     t.get('statuses/user_timeline', params, function(err, tweets, response){
         if(err){
-            console.log("Could not get tweets " + err[0].message);
+            console.log("Could not get tweets " + err);
         }
         else{
 			var tweetText = "";
