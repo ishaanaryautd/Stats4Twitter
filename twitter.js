@@ -4,10 +4,22 @@ module.exports = {
     getTweets: getTweetsFromUsername
 };
 
+function tweetsByUser(twitterObj, params){
+    return new Promise((resolve, reject) => {
+        twitterObj.get('statuses/user_timeline', params, (err, data) => {
+           if (err) {
+               reject(err);
+           } else {
+               resolve(data);
+           }
+        });
+     });
+}
+
+
 //We will return json from this function with all the required things
 function getTweetsFromUsername(username){
 	
-	var jsonResult = {};
     var Twitter = require('twitter');
     var t = new Twitter({
         consumer_key: process.env.twitter_consumer_key,
@@ -22,73 +34,100 @@ function getTweetsFromUsername(username){
         include_rts : false,
 		tweet_mode: 'extended'
     };
-    console.log(username);
 
-    t.get('statuses/user_timeline', params, function(err, tweets, response){
-        if(err){
-            console.log("Could not get tweets " + err);
+    var trimTop5Likes = [];
+	var trimTop5Retweets = [];
+
+    var t = tweetsByUser(t, params);
+
+    t.then(function(tweets){
+        var tweetText = "";
+        var likesTotal = 0;
+        var reTweetsTotal = 0;
+        for(var i = 0; i < tweets.length; i++){
+            tweetText = tweetText + " " + tweets[i].text;
+            likesTotal += tweets[i].favorite_count;
+            reTweetsTotal += tweets[i].retweet_count;
         }
-        else{
-			var tweetText = "";
-			var likesTotal = 0;
-			var reTweetsTotal = 0;
-            for(var i = 0; i < tweets.length; i++){
-                tweetText = tweetText + " " + tweets[i].text;
-				likesTotal += tweets[i].favorite_count;
-				reTweetsTotal += tweets[i].retweet_count;
-            }
-			
-			var likesAverage = likesTotal/tweets.length;
-			var retweetsAverage = reTweetsTotal/tweets.length;
-			
-			//************Adding to final return object*********************
-			jsonResult["AverageLikes"] = likesAverage;
-			jsonResult["AverageRetweets"] = retweetsAverage;
-			
-			//console.log(likesAverage);
-			//console.log(retweetsAverage);
-			
-			//****************************
-			//Do Watson stuff here with tweetText
-			///***************************
-			
-			var modifiedTweetsForLikes = {};
-			var modifiedTweetsForRetweets = {};
-			
-			for(var i = 0; i < tweets.length; i++){
-				modifiedTweetsForLikes[tweets[i].id] = tweets[i].favorite_count;
-				modifiedTweetsForRetweets[tweets[i].id] = tweets[i].retweet_count;
-			}
-			
-			var sortedByLikes = sortProperties(modifiedTweetsForLikes);
-			var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
-			
-			//console.log(sortedByLikes);
-			//console.log(sortedByRetweets);
-			
-			var trimTop5Likes = [];
-			var trimTop5Retweets = [];
-			
-			for(var i = sortedByLikes.length - 1; i >= sortedByLikes.length - 5; i--){
-				trimTop5Likes.push((sortedByLikes[i])[0]);
-			}
-			
-			//console.log(trimTop5Likes);
-			
-			for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
-				trimTop5Retweets.push((sortedByRetweets[i])[0]);
-			}
-			
-			//console.log(trimTop5Retweets);
-		
+        
+        var likesAverage = likesTotal/tweets.length;
+        var retweetsAverage = reTweetsTotal/tweets.length;
+        //console.log(likesAverage);
+        //console.log(retweetsAverage);
+        
+        //****************************
+        //Do Watson stuff here with tweetText
+        ///***************************
+        
+        var modifiedTweetsForLikes = {};
+        var modifiedTweetsForRetweets = {};
+        
+        for(var i = 0; i < tweets.length; i++){
+            modifiedTweetsForLikes[tweets[i].id] = tweets[i].favorite_count;
+            modifiedTweetsForRetweets[tweets[i].id] = tweets[i].retweet_count;
         }
+        
+        var sortedByLikes = sortProperties(modifiedTweetsForLikes);
+        var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
+        
+        //console.log(sortedByLikes);
+        //console.log(sortedByRetweets);
+        
+        for(var i = sortedByLikes.length - 1; i >= sortedByLikes.length - 5; i--){
+            trimTop5Likes.push((sortedByLikes[i])[0]);
+        }
+        for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
+            trimTop5Retweets.push((sortedByRetweets[i])[0]);
+        }
+
+        //console.log(likesAverage);
+        //console.log(retweetsAverage);
+        
+        //****************************
+        //Do Watson stuff here with tweetText
+        ///***************************
+        
+        var modifiedTweetsForLikes = {};
+        var modifiedTweetsForRetweets = {};
+        
+        for(var i = 0; i < tweets.length; i++){
+            modifiedTweetsForLikes[tweets[i].id] = tweets[i].favorite_count;
+            modifiedTweetsForRetweets[tweets[i].id] = tweets[i].retweet_count;
+        }
+        
+        var sortedByLikes = sortProperties(modifiedTweetsForLikes);
+        var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
+        
+        //console.log(sortedByLikes);
+        //console.log(sortedByRetweets);
+        
+        for(var i = sortedByLikes.length - 1; i >= sortedByLikes.length - 5; i--){
+            trimTop5Likes.push((sortedByLikes[i])[0]);
+        }
+        for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
+            trimTop5Retweets.push((sortedByRetweets[i])[0]);
+        }
+        return trimTop5Likes;
+
+    }).then(function(data){
+        //Now can work with trimtop5likes, since its in data
+        console.log(trimTop5Likes);
+        var top5LikesIDs = "";
+        for(var i = 0; i < data.length; i++){
+            top5LikesIDs = top5LikesIDs + data[i] + ",";
+        }
+        top5LikesIDs = top5LikesIDs.slice(0, -1);
+        
+    }).catch(function(err){
+        console.log("err: " + err);
     });
-	return jsonResult;
+
+    
+
 }
 
 //function from github https://gist.github.com/umidjons/9614157
-function sortProperties(obj)
-{
+function sortProperties(obj){
 	// convert object into array
 	var sortable=[];
 	for(var key in obj)
