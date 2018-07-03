@@ -7,7 +7,7 @@ function testFunction(){
 		method: "GET",
 		dataType: "json",
 		success: function(result) {
-			console.log("success");
+			console.log(result);
 		},
 		error: function() {
 			console.log("Something went wrong, data could not be fetched");
