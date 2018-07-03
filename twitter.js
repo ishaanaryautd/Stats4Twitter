@@ -66,7 +66,7 @@ function getTweetsFromUsername(username){
     var params = {
         screen_name : username,
         include_rts : false,
-		tweet_mode: 'extended'
+		tweet_mode: 'extended',
     };
 
     var trimTop5Likes = [];
@@ -105,8 +105,8 @@ function getTweetsFromUsername(username){
         var modifiedTweetsForRetweets = {};
         
         for(var i = 0; i < tweets.length; i++){
-            modifiedTweetsForLikes[tweets[i].id] = tweets[i].favorite_count;
-            modifiedTweetsForRetweets[tweets[i].id] = tweets[i].retweet_count;
+            modifiedTweetsForLikes[tweets[i].id_str] = tweets[i].favorite_count;
+            modifiedTweetsForRetweets[tweets[i].id_str] = tweets[i].retweet_count;
         }
         
         var sortedByLikes = sortProperties(modifiedTweetsForLikes);
@@ -150,6 +150,7 @@ function getTweetsFromUsername(username){
             top5RetweetsIDs = top5RetweetsIDs + (data["RetweetsArray"])[i] + ",";
         }
 		top5RetweetsIDs = top5RetweetsIDs.slice(0, -1);
+		console.log(top5RetweetsIDs);
 
     }).catch(function(err){
         console.log("err: " + err);
