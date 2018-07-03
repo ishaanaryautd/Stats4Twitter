@@ -136,7 +136,7 @@ async function callingAPIFunction(username){
         top5LikesIDs = top5LikesIDs + trimTop5Likes[i] + ",";
     }
     top5LikesIDs = top5LikesIDs.slice(0, -1);
-    console.log(top5LikesIDs);
+
 	// *** Call a function to get the top 5 tweets by likes here **** Use var b
     var b = await getTweetsByID(top5LikesIDs);
     return_data["Top5LikedTweets"] = [];
@@ -144,26 +144,44 @@ async function callingAPIFunction(username){
         if(b[i].extended_entities == null){
             return_data["Top5LikedTweets"][i] = {
                 tweet : b[i].full_text,
+                likes : b[i].favorite_count,
                 imageURL : null
             };
         }
         else{
             return_data["Top5LikedTweets"][i] = {
                 tweet : b[i].full_text,
+                likes : b[i].favorite_count,
                 imageURL : b[i].extended_entities.media[0].media_url 
             };
         }
     }
 
-	var top5RetweetsIDs = "";
+    var top5RetweetsIDs = "";
     for(var i = 0; i < trimTop5Retweets.length; i++){
         top5RetweetsIDs = top5RetweetsIDs + trimTop5Retweets[i] + ",";
     }
 	top5RetweetsIDs = top5RetweetsIDs.slice(0, -1);
-	//console.log(top5RetweetsIDs);
+
 	// *** Call a function to get the top 5 tweets by retweets here **** Use var c
-	var c = "";
-	
+	var c = await getTweetsByID(top5RetweetsIDs);
+    return_data["Top5RetweetedTweets"] = [];
+    for(var i = 0; i < c.length; i++){
+        if(c[i].extended_entities == null){
+            return_data["Top5RetweetedTweets"][i] = {
+                tweet : c[i].full_text,
+                retweets : b[i].retweet_count,
+                imageURL : null
+            };
+        }
+        else{
+            return_data["Top5RetweetedTweets"][i] = {
+                tweet : c[i].full_text,
+                retweets : b[i].retweet_count,
+                imageURL : c[i].extended_entities.media[0].media_url 
+            };
+        }
+    }
 	//Send tweets to watson
     var d = await watson(tweetText);
    
