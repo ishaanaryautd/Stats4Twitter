@@ -95,7 +95,6 @@ function getTweetsFromUsername(username){
 		}
 		
 		
-   
         watson(defaultParameters).then(function(result){
             var returnData = {};
             //console.log(result);
