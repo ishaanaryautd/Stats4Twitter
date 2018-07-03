@@ -15,7 +15,33 @@ function tweetsByUser(twitterObj, params){
         });
      });
 }
+function watson(params) {
+    return new Promise(function (resolve, reject) {
+        var res = {};
 
+        const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+
+        var url = params.url || 'https://gateway.watsonplatform.net/personality-insights/api' ;
+        var use_unauthenticated =  params.use_unauthenticated || false ;
+
+        const personality_insights = new PersonalityInsightsV3({
+            'username': params.username,
+            'password': params.password,
+            'version_date': '2016-05-20',
+            'url' : url,
+            'use_unauthenticated': use_unauthenticated
+        });
+
+        personality_insights.profile({'text': params.textToAnalyze},
+            function(err, res) {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+    });
+}
+ 
 
 //We will return json from this function with all the required things
 function getTweetsFromUsername(username){
@@ -48,48 +74,22 @@ function getTweetsFromUsername(username){
             likesTotal += tweets[i].favorite_count;
             reTweetsTotal += tweets[i].retweet_count;
         }
-		
-/* 		function main(params) {
-			return new Promise(function (resolve, reject) {
-			var res = {};
-
-			const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
-
-			var url = params.url || 'https://gateway.watsonplatform.net/personality-insights/api' ;
-			var use_unauthenticated =  params.use_unauthenticated || false ;
-
-			const personality_insights = new PersonalityInsightsV3({
-				'username': params.username,
-				'password': params.password,
-				'version_date': '2016-05-20',
-				'url' : url,
-				'use_unauthenticated': use_unauthenticated
-			});
-
-			personality_insights.profile({'text': params.textToAnalyze},
-				function(err, res) {
-					if (err)
-						reject(err);
-					else
-						resolve(res);
-				});
-			});
-		}
-
-		const defaultParameters = {
+        
+        const defaultParameters = {
 			'textToAnalyze': tweetText,
 			'username':      '490dc133-beae-49c1-8e30-31a3f809261b',
 			'password':      'cyrRye4xUTjz',
 			'url' : 'https://gateway.watsonplatform.net/personality-insights/api',
 			'use_unauthenticated' : true
 		}
+        console.log("Running Watson: ");
 
-		if (require.main === module)
-			main(defaultParameters)
-				.then((results) => console.log(JSON.stringify(results, null, 2)))
-				.catch((error) => console.log(error.message));
- 
-		 */
+		if (require.main === module){
+            watson(defaultParameters)
+            .then((results) => console.log(JSON.stringify(results, null, 2)))
+            .catch((error) => console.log(error.message));
+        }	
+
         var likesAverage = likesTotal/tweets.length;
         var retweetsAverage = reTweetsTotal/tweets.length;
         //console.log(likesAverage);
@@ -127,19 +127,19 @@ function getTweetsFromUsername(username){
 
     }).then(function(data){
         //Now can work with trimtop5likes, since its in data
-        
         var top5LikesIDs = "";
         for(var i = 0; i < data["LikesArray"].length; i++){
             top5LikesIDs = top5LikesIDs + (data["LikesArray"])[i] + ",";
         }
         top5LikesIDs = top5LikesIDs.slice(0, -1);
-        console.log(top5LikesIDs);
+
+
 		var top5RetweetsIDs = "";
         for(var i = 0; i < data["RetweetsArray"].length; i++){
             top5RetweetsIDs = top5RetweetsIDs + (data["RetweetsArray"])[i] + ",";
         }
 		top5RetweetsIDs = top5RetweetsIDs.slice(0, -1);
-		console.log(top5RetweetsIDs);
+
     }).catch(function(err){
         console.log("err: " + err);
     });
