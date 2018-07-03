@@ -15,7 +15,9 @@ function getTweetsFromUsername(username){
 
     var params = {
         screen_name : username,
-        include_rts : false
+        count : 10,
+        include_rts : false,
+		tweet_mode: 'extended'
     };
     console.log(username);
 
@@ -24,13 +26,70 @@ function getTweetsFromUsername(username){
             console.log("Could not get tweets " + err);
         }
         else{
-            var tw = "";
+			var tweetText = "";
+			var likesTotal = 0;
+			var reTweetsTotal = 0;
             for(var i = 0; i < tweets.length; i++){
-                tw = tw + " " + tweets[i].text;
+                tweetText = tweetText + " " + tweets[i].text;
+				likesTotal += tweets[i].favorite_count;
+				reTweetsTotal += tweets[i].retweet_count;
             }
-            console.log(tw)
-            
+			
+			var likesAverage = likesTotal/tweets.length;
+			var retweetsAverage = reTweetsTotal/tweets.length;
+			
+			//console.log(likesAverage);
+			//console.log(retweetsAverage);
+			
+			//****************************
+			//Do Watson stuff here with tweetText
+			///***************************
+			
+			var modifiedTweetsForLikes = {};
+			var modifiedTweetsForRetweets = {};
+			
+			for(var i = 0; i < tweets.length; i++){
+				modifiedTweetsForLikes[tweets[i].id] = tweets[i].favorite_count;
+				modifiedTweetsForRetweets[tweets[i].id] = tweets[i].retweet_count;
+			}
+			
+			var sortedByLikes = sortProperties(modifiedTweetsForLikes);
+			var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
+			
+			//console.log(sortedByLikes);
+			//console.log(sortedByRetweets);
+			
+			var trimTop5Likes = [];
+			var trimTop5Retweets = [];
+			
+			for(var i = sortedByLikes.length - 1; i >= sortedByLikes.length - 5; i--){
+				trimTop5Likes.push((sortedByLikes[i])[0]);
+			}
+			
+			//console.log(trimTop5Likes);
+			
+			for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
+				trimTop5Retweets.push((sortedByRetweets[i])[0]);
+			}
+			
+			//console.log(trimTop5Retweets);
+		
         }
     });
 }
 
+//function from github https://gist.github.com/umidjons/9614157
+function sortProperties(obj)
+{
+	// convert object into array
+	var sortable=[];
+	for(var key in obj)
+	if(obj.hasOwnProperty(key))
+	sortable.push([key, obj[key]]); // each item is an array in format [key, value]		
+	// sort items by value
+	sortable.sort(function(a, b)
+	{
+		return a[1]-b[1]; // compare numbers
+	});
+	return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+}

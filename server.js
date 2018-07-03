@@ -9,7 +9,6 @@ app.get('/', function(req,res,next){
 
 app.get('/data', function(req,res,next){
 	var t = require('./twitter.js')
-
 	t.getTweets(req.query.twitterUsername);
 });
 
