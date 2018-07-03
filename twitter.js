@@ -4,7 +4,10 @@ module.exports = {
     getTweets: getTweetsFromUsername
 };
 
+//We will return json from this function with all the required things
 function getTweetsFromUsername(username){
+	
+	var jsonResult = {};
     var Twitter = require('twitter');
     var t = new Twitter({
         consumer_key: process.env.twitter_consumer_key,
@@ -36,6 +39,10 @@ function getTweetsFromUsername(username){
 			
 			var likesAverage = likesTotal/tweets.length;
 			var retweetsAverage = reTweetsTotal/tweets.length;
+			
+			//************Adding to final return object*********************
+			jsonResult["AverageLikes"] = likesAverage;
+			jsonResult["AverageRetweets"] = retweetsAverage;
 			
 			//console.log(likesAverage);
 			//console.log(retweetsAverage);
@@ -75,6 +82,7 @@ function getTweetsFromUsername(username){
 		
         }
     });
+	return jsonResult;
 }
 
 //function from github https://gist.github.com/umidjons/9614157

@@ -1,5 +1,6 @@
 const express = require("express");
 var app = express();
+const async = require("async");
 
 app.use(express.static('public'));
 
@@ -9,7 +10,7 @@ app.get('/', function(req,res,next){
 
 app.get('/data', function(req,res,next){
 	var t = require('./twitter.js')
-	t.getTweets(req.query.twitterUsername);
+	var resultFromTwitter = t.getTweets(req.query.twitterUsername);
 });
 
 app.set('port', (process.env.PORT || 8080));
