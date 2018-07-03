@@ -55,38 +55,6 @@ function getTweetsFromUsername(username){
         //console.log(likesAverage);
         //console.log(retweetsAverage);
         
-        //****************************
-        //Do Watson stuff here with tweetText
-        ///***************************
-        
-        var modifiedTweetsForLikes = {};
-        var modifiedTweetsForRetweets = {};
-        
-        for(var i = 0; i < tweets.length; i++){
-            modifiedTweetsForLikes[tweets[i].id] = tweets[i].favorite_count;
-            modifiedTweetsForRetweets[tweets[i].id] = tweets[i].retweet_count;
-        }
-        
-        var sortedByLikes = sortProperties(modifiedTweetsForLikes);
-        var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
-        
-        //console.log(sortedByLikes);
-        //console.log(sortedByRetweets);
-        
-        for(var i = sortedByLikes.length - 1; i >= sortedByLikes.length - 5; i--){
-            trimTop5Likes.push((sortedByLikes[i])[0]);
-        }
-        for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
-            trimTop5Retweets.push((sortedByRetweets[i])[0]);
-        }
-
-        //console.log(likesAverage);
-        //console.log(retweetsAverage);
-        
-        //****************************
-        //Do Watson stuff here with tweetText
-        ///***************************
-        
         var modifiedTweetsForLikes = {};
         var modifiedTweetsForRetweets = {};
         
@@ -111,13 +79,14 @@ function getTweetsFromUsername(username){
 
     }).then(function(data){
         //Now can work with trimtop5likes, since its in data
-        console.log(trimTop5Likes);
+        
         var top5LikesIDs = "";
         for(var i = 0; i < data.length; i++){
             top5LikesIDs = top5LikesIDs + data[i] + ",";
         }
         top5LikesIDs = top5LikesIDs.slice(0, -1);
-        
+        console.log(top5LikesIDs);
+t
     }).catch(function(err){
         console.log("err: " + err);
     });
