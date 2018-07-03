@@ -132,7 +132,7 @@ async function callingAPIFunction(username){
     top5LikesIDs = top5LikesIDs.slice(0, -1);
 	console.log(top5LikesIDs);
 	// *** Call a function to get the top 5 tweets by likes here **** Use var b
-	
+	var b = "";
 	var top5RetweetsIDs = "";
     for(var i = 0; i < trimTop5Retweets.length; i++){
         top5RetweetsIDs = top5RetweetsIDs + trimTop5Retweets[i] + ",";
@@ -140,7 +140,9 @@ async function callingAPIFunction(username){
 	top5RetweetsIDs = top5RetweetsIDs.slice(0, -1);
 	console.log(top5RetweetsIDs);
 	// *** Call a function to get the top 5 tweets by retweets here **** Use var c
+	var c = "";
 	
+	//Send tweets to watson
     var d = await watson(tweetText);
    
 	return_data[(((d.personality)[0]).name)] = (((d.personality)[0]).percentile);
