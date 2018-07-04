@@ -1,6 +1,6 @@
 $("submit").click(function () {
 	$("loading").show();
-
+	console.log("hi");
 	// document.getElementById("usernameForm").style.display = "none";
 	$.ajax({
 		url: "/data",
