@@ -1,8 +1,8 @@
-function testFunction(){
+function fetchData(){
 	$.ajax({
 		url: "/data" ,
 		data: {
-			"twitterUsername": "SrBachchan"
+			"twitterUsername": document.getElementById("username").value
 		},
 		method: "GET",
 		dataType: "json",
