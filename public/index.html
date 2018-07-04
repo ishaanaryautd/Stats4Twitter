@@ -27,7 +27,7 @@
         </a>
     </nav>
     <div class="container">
-        <div class="row">
+        <div class="row" id="usernameForm">
             <div class="col-sm-4 col-xs-3">
                 <h3>Enter your Twitter handle </h3>
             </div>
@@ -45,10 +45,13 @@
         </div>
         </br>
         </br>
+		
+		<div id="loading" style="display: none;">
+			<img id = "loading-image" src = "images/loading.gif" alt="Loading..."/>
+		</div>
 
-        <div class="row" id="row">
+        <div class="row" id="row" style="display: none;">
             <div class="col-sm-6">
-
                 <h3>Top 5 Liked Tweets</h3>
                 <div class="card">
                     <ul class="list-group list-group-flush">
@@ -72,13 +75,13 @@
                         <li class="list-group-item" id="retweet1">Cras justo odio</li>
                         <div class="card-header" id="numretweets1">retweets1</div>
                         <li class="list-group-item" id="retweet2">Dapibus ac facilisis in</li>
-                        <div class="card-header" id="numretweets1">retweets1</div>
+                        <div class="card-header" id="numretweets2">retweets1</div>
                         <li class="list-group-item" id="retweet3">Vestibulum at eros</li>
-                        <div class="card-header" id="numretweets1">retweets1</div>
+                        <div class="card-header" id="numretweets3">retweets1</div>
                         <li class="list-group-item" id="retweet4">Vestibulum at eros</li>
-                        <div class="card-header" id="numretweets1">retweets1</div>
+                        <div class="card-header" id="numretweets4">retweets1</div>
                         <li class="list-group-item" id="retweet5">Vestibulum at eros</li>
-                        <div class="card-header" id="numretweets1">retweets1</div>
+                        <div class="card-header" id="numretweets5">retweets1</div>
                     </ul>
                 </div>
             </div>
