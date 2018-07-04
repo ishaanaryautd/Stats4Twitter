@@ -1,0 +1,14 @@
+.navbar-custom {
+  background-color: #0084b4;
+  border-color: #C2185B;
+  border-radius: 0px;
+}
+
+.navbar-custom .navbar-brand {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar-custom .navbar-brand:hover {
+  color: #F5F5F5;
+}
