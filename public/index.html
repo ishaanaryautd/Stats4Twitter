@@ -1,92 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="script.js"></script>
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<!--Google font-->
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
-	<nav class="navbar navbar-expand-md navbar-custom sticky-top">
+
+    <nav class="navbar navbar-expand-md navbar-custom sticky-top">
         <a class="navbar-brand" href="#">
-           
+
             <nav class="navbar-header">
-                <img src="./images/twitter.png" width="28" height="27" class="d-inline-block align-center" alt="">
-                Twitter Stats 
+                <img src="./images/twitter.png" width="28" height="27" class="d-inline-block align-center" alt=""> Twitter Stats
             </nav>
         </a>
-	</nav>
+    </nav>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 col-xs-3">
                 <h3>Enter your Twitter handle </h3>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-5 col-xs-5">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">@</span>
                     </div>
                     <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                </div>       
+                </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 col-xs-4">
                 <button onclick="fetchData()" class="btn btn-primary btn-block"> Submit </button>
             </div>
         </div>
         </br>
         </br>
+
         <div class="row">
             <div class="col-sm-6">
                 <h3>Top 5 Liked Tweets</h3>
+                <div class="card">
+                    <div id="like1" class="card-body">
+                        Enter top 5 liked tweets here
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="like2" class="card-body">
+                        Enter top 5 liked tweets here
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="like3" class="card-body">
+                        Enter top 5 liked tweets here
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="like4" class="card-body">
+                        Enter top 5 liked tweets here
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="like5" class="card-body">
+                        Enter top 5 liked tweets here
+                    </div>
+                </div>
             </div>
             <div class="col-sm-6">
                 <h3>Top 5 Retweeted Tweets</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 card">
-                <div id="like1" class="card-body">  
-                    Enter top 5 liked tweets here
+                <div class="card">
+                    <div id="retweet1" class="card-body">
+                        Enter top 5 retweeted tweets here
+                    </div>
                 </div>
-				<div id="like2" class="card-body">  
-                    Enter top 5 liked tweets here
+                <div class="card">
+                    <div id="retweet2" class="card-body">
+                        Enter top 5 retweeted tweets here
+                    </div>
                 </div>
-				<div id="like3" class="card-body">  
-                    Enter top 5 liked tweets here
+                <div class="card">
+                    <div id="retweet3" class="card-body">
+                        Enter top 5 retweeted tweets here
+                    </div>
                 </div>
-				<div id="like4" class="card-body">  
-                    Enter top 5 liked tweets here
+                <div class="card">
+                    <div id="retweet4" class="card-body">
+                        Enter top 5 retweeted tweets here
+                    </div>
                 </div>
-				<div id="like5" class="card-body">  
-                    Enter top 5 liked tweets here
-                </div>
-            </div>
-            <div class="col-sm-6 card">
-                <div id="retweet1" class="card-body">  
-                    Enter top 5 retweeted tweets here
-                </div>
-				<div id="retweet2" class="card-body">  
-                    Enter top 5 retweeted tweets here
-                </div>
-				<div id="retweet3" class="card-body">  
-                    Enter top 5 retweeted tweets here
-                </div>
-				<div id="retweet4" class="card-body">  
-                    Enter top 5 retweeted tweets here
-                </div>
-				<div id="retweet5" class="card-body">  
-                    Enter top 5 retweeted tweets here
+                <div class="card">
+                    <div id="retweet5" class="card-body">
+                        Enter top 5 retweeted tweets here
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
