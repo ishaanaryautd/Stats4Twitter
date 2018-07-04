@@ -61,6 +61,8 @@ $("#submit").click(function (e) {
 			document.getElementById("numretweets3").innerHTML = result.Top5RetweetedTweets[2].retweets;
 			document.getElementById("numretweets4").innerHTML = result.Top5RetweetedTweets[1].retweets;
 			document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[0].retweets;
+			document.getElementById("avgLikes").innerHTML = result.AverageLikes + " likes";
+			document.getElementById("avgRetweets").innerHTML = result.AverageRetweets + " retweets";
 
 			if (result.Top5RetweetedTweets[4].imageURL != null) {
 				document.getElementById("picretweets1").src = result.Top5RetweetedTweets[4].imageURL;
@@ -93,9 +95,13 @@ $("#submit").click(function (e) {
 				var elem = document.getElementById('picretweets5');
 				elem.parentNode.removeChild(elem);
 			}
+
+
 			$("#loading").hide();
 			$('#likedTweets').css('display', 'block');
 			$('#retweetedTweets').css('display', 'block');
+			$("#avgL").css('display', 'block');
+			$("#avgR").css('display', 'block');
 		},
 		error: function () {
 			console.log("Something went wrong, data could not be fetched");

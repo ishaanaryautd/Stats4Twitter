@@ -43,14 +43,40 @@
         </br>
         </br>
 
-        <div id="loading" style="display: none;">
-            <img id="loading-image" src="images/loading.gif" alt="Loading..." />
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div id="loading" style="display: none;">
+                    <img id="loading-image" src="images/loading.gif" alt="Loading..." style="margin: auto;    
+                    display: block; width:50px;" class="img-responsive" />
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
         </div>
 
-        <div class="row" id="row">
+        <div class="row">
+            <div class="col-sm-6" id="avgL" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Average Likes Per Tweet</h3>
+                        <p class="card-text" id="avgLikes"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" id="avgR" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Average Retweets Per Tweet</h3>
+                        <p class="card-text" id="avgRetweets"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
             <div id="likedTweets" class="col-sm-6" style="display: none;">
                 <h3>Top 5 Liked Tweets</h3>
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes1">
                     <div class="card-body">
                         <p class="card-text" id="like1"></p>
@@ -60,17 +86,17 @@
                         <p id="numlikes1"></p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes2">
                     <div class="card-body">
                         <p class="card-text" id="like2"></p>
                     </div>
                     <div class="card-footer">
-                        <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
+                        <img src="./images/heart.png" width="15" height="15" style="display:inline" alt="">
                         <p id="numlikes2"></p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes3">
                     <div class="card-body">
                         <p class="card-text" id="like3"></p>
@@ -80,8 +106,7 @@
                         <p id="numlikes3"></p>
                     </div>
                 </div>
-
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes4">
                     <div class="card-body">
                         <p class="card-text" id="like4"></p>
@@ -91,8 +116,7 @@
                         <p id="numlikes4"></p>
                     </div>
                 </div>
-
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes5">
                     <div class="card-body">
                         <p class="card-text" id="like5"></p>
@@ -105,7 +129,7 @@
             </div>
             <div id="retweetedTweets" class="col-sm-6" style="display: none;">
                 <h3>Top 5 Retweeted Tweets</h3>
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="picretweets1">
                     <div class="card-body">
                         <p class="card-text" id="retweet1"></p>
@@ -116,7 +140,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="picretweets2">
                     <div class="card-body">
                         <p class="card-text" id="retweet2"></p>
@@ -127,7 +151,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="picretweets3">
                     <div class="card-body">
                         <p class="card-text" id="retweet3"></p>
@@ -138,7 +162,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="picretweets4">
                     <div class="card-body">
                         <p class="card-text" id="retweet4"></p>
@@ -149,7 +173,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="picretweets5">
                     <div class="card-body">
                         <p class="card-text" id="retweet5"></p>
