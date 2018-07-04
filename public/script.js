@@ -1,7 +1,7 @@
-function clickButton() {
-	$("loading").show();
-	console.log("hi");
-	// document.getElementById("usernameForm").style.display = "none";
+$("#submit").click(function (e) {
+	e.preventDefault();
+	$("#loading").show();
+
 	$.ajax({
 		url: "/data",
 		data: {
@@ -62,8 +62,9 @@ function clickButton() {
 			document.getElementById("numretweets4").innerHTML = result.Top5RetweetedTweets[1].retweets;
 			document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[0].retweets;
 
-			if (result.Top5RetweetedTweets[4].imageURL != null)
+			if (result.Top5RetweetedTweets[4].imageURL != null) {
 				document.getElementById("picretweets1").src = result.Top5RetweetedTweets[4].imageURL;
+			}
 			else {
 				var elem = document.getElementById('picretweets1');
 				elem.parentNode.removeChild(elem);
@@ -92,11 +93,12 @@ function clickButton() {
 				var elem = document.getElementById('picretweets5');
 				elem.parentNode.removeChild(elem);
 			}
-			$("loading").hide();
-			document.getElementById("row").style.display = "block";
+			$("#loading").hide();
+			$('#likedTweets').css('display', 'block');
+			$('#retweetedTweets').css('display', 'block');
 		},
 		error: function () {
 			console.log("Something went wrong, data could not be fetched");
 		}
 	});
-}
+})
