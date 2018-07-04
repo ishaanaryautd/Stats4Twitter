@@ -103,8 +103,8 @@ $("#submit").click(function (e) {
 			$("#avgL").css('display', 'block');
 			$("#avgR").css('display', 'block');
 		},
-		error: function () {
-			console.log("Something went wrong, data could not be fetched");
+		error: function (err) {
+			console.log("Something went wrong, data could not be fetched " + err);
 		}
 	});
 })
