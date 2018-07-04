@@ -1,10 +1,14 @@
 .navbar-custom {
-  background-color: #337ab7;
-  border-color: #337ab7;
+  background-color: #1AA6D9;
+  border-color: #1AA6D9;
   border-radius: 0px;
   margin-bottom: 20px;
 }
 
+.custom-btn {
+  background-color: #1AA6D9;
+  color: #ffffff;
+}
 .navbar-custom .navbar-brand {
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
