@@ -1,4 +1,4 @@
-$("submit").click(function () {
+function clickButton() {
 	$("loading").show();
 	console.log("hi");
 	// document.getElementById("usernameForm").style.display = "none";
@@ -99,4 +99,4 @@ $("submit").click(function () {
 			console.log("Something went wrong, data could not be fetched");
 		}
 	});
-})
+}
