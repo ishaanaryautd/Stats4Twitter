@@ -14,7 +14,7 @@
   color: #F5F5F5;
 }
 
-#loading {
+/* #loading {
    width: 100%;
    height: 100%;
    top: 0;
@@ -25,11 +25,10 @@
    background-color: #fff;
    z-index: 99;
    text-align: center;
-}
+} */
 
 #loading-image {
   position: absolute;
-  top: 100px;
-  left: 240px;
-  z-index: 100;
+  /* top: 100px;
+  left: 240px; */
 }

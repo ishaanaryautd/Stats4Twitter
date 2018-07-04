@@ -1,14 +1,15 @@
-function fetchData(){
-	document.getElementById("usernameForm").style.display = "none";
-	document.getElementById("loading").style.display = "block";
+$("submit").click(function () {
+	$("loading").show();
+
+	// document.getElementById("usernameForm").style.display = "none";
 	$.ajax({
-		url: "/data" ,
+		url: "/data",
 		data: {
 			"twitterUsername": document.getElementById("username").value
 		},
 		method: "GET",
 		dataType: "json",
-		success: function(result) {
+		success: function (result) {
 			console.log(result);
 			document.getElementById("like1").innerHTML = result.Top5LikedTweets[4].tweet;
 			document.getElementById("like2").innerHTML = result.Top5LikedTweets[3].tweet;
@@ -30,11 +31,11 @@ function fetchData(){
 			document.getElementById("numretweets3").innerHTML = result.Top5RetweetedTweets[2].retweets;
 			document.getElementById("numretweets4").innerHTML = result.Top5RetweetedTweets[1].retweets;
 			document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[0].retweets;
-			document.getElementById("loading").style.display = "none";
+			$("loading").hide();
 			document.getElementById("row").style.display = "block";
 		},
-		error: function() {
+		error: function () {
 			console.log("Something went wrong, data could not be fetched");
 		}
 	});
-}
+})
