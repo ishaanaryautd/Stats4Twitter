@@ -5,6 +5,15 @@ $("#username").keyup(function (event) {
 })
 
 $("#submit").click(function (e) {
+	if(document.getElementById("alert").style.display == "block"){
+		$("#alert").css('display', 'none');
+	}
+	if(document.getElementById("username").value == ""){
+		$("#alert").css('display', 'block');
+		let element = document.getElementById("alert");
+		element.insertAdjacentHTML('afterbegin', "The username field cannot be empty.");
+		return;
+	}
 	var has5tweets = "no";
 	e.preventDefault();
 	document.getElementById("usernameForm").style.display = "none";
