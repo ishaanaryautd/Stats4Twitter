@@ -160,7 +160,7 @@ $("#submit").click(function (e) {
 					$("#loading").hide();
 					$("#alert").css('display', 'block');
 					let element = document.getElementById("alert");
-					element.insertAdjacentHTML('afterbegin', "The user has less than 5 tweets, so statistics cannot be shown.");
+					element.insertAdjacentHTML('afterbegin', "The user has less than 5 tweets, so statistics cannot be shown.")
 				}
 
 				$("#loading").hide();
