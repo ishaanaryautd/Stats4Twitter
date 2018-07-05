@@ -27,6 +27,7 @@ $("#submit").click(function (e) {
 					document.getElementById("numlikes3").innerHTML = result.Top5LikedTweets[2].likes;
 					document.getElementById("numlikes4").innerHTML = result.Top5LikedTweets[3].likes;
 					document.getElementById("numlikes5").innerHTML = result.Top5LikedTweets[4].likes;
+
 					if (result.Top5LikedTweets[0].imageURL != null)
 						document.getElementById("piclikes1").src = result.Top5LikedTweets[0].imageURL;
 					else {
@@ -57,6 +58,7 @@ $("#submit").click(function (e) {
 						var elem = document.getElementById('piclikes5');
 						elem.parentNode.removeChild(elem);
 					}
+
 					document.getElementById("retweet1").innerHTML = result.Top5RetweetedTweets[0].tweet;
 					document.getElementById("retweet2").innerHTML = result.Top5RetweetedTweets[1].tweet;
 					document.getElementById("retweet3").innerHTML = result.Top5RetweetedTweets[2].tweet;
@@ -69,6 +71,9 @@ $("#submit").click(function (e) {
 					document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[4].retweets;
 					document.getElementById("avgLikes").innerHTML = result.AverageLikes + " likes";
 					document.getElementById("avgRetweets").innerHTML = result.AverageRetweets + " retweets";
+					document.getElementById("profPic").src = result.ProfilePic;
+					document.getElementById("name").innerHTML = result.Name;
+					document.getElementById("profScreenName").innerHTML = "(@" + result.ScreenName + ")";
 
 					if (result.Top5RetweetedTweets[0].imageURL != null) {
 						document.getElementById("picretweets1").src = result.Top5RetweetedTweets[0].imageURL;
@@ -150,7 +155,7 @@ $("#submit").click(function (e) {
 					$('#likedTweets').css('display', 'block');
 					$('#retweetedTweets').css('display', 'block');
 				}
-				$("#avgR").css('display', 'block');
+				$("#avgLR").css('display', 'block');
 				$("#tryAgain").css('display', 'block');
 				$("#profile").css('display', 'block');
 				$(window).resize(function () {
