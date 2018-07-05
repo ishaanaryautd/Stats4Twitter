@@ -17,7 +17,6 @@
 <body>
     <nav class="navbar navbar-header navbar-custom sticky-top">
         <a class="navbar-brand" href="#">
-
             <nav class="navbar-header">
                 <img src="./images/twitter.png" width="28" height="27" class="d-inline-block align-center" alt=""> Twitter Stats
             </nav>
@@ -58,19 +57,28 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6" id="avgL" style="display: none;">
+            <div class="col-md-4" id="profile" style="display: none;">
                 <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Average Likes Per Tweet</h3>
-                        <p class="card-text" id="avgLikes"></p>
+                    <img class="card-img" id="profPic" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h3 class="card-title" id="name" style="color: white"></h3>
+                        <p class="card-text" id="profScreenName" style="color: white"></p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" id="avgR" style="display: none;">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Average Retweets Per Tweet</h3>
-                        <p class="card-text" id="avgRetweets"></p>
+            <div class="col-md-8" id="avgLR" style="display: none;">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Average Likes Per Tweet</h5>
+                            <p class="card-text" id="avgLikes"></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Average Retweets Per Tweet</h5>
+                            <p class="card-text" id="avgRetweets"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,50 +91,50 @@
                     <img class="card-img-top" alt="Card image cap" id="piclikes1">
                     <div class="card-body">
                         <p class="card-text" id="like1"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numlikes1"></p>
+                        <p class="card-text">
+                            <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numlikes1"></small>
+                        </p>
                     </div>
                 </div>
                 <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes2">
                     <div class="card-body">
                         <p class="card-text" id="like2"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/heart.png" width="15" height="15" style="display:inline" alt="">
-                        <p id="numlikes2"></p>
+                        <p class="card-text">
+                            <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numlikes2"></small>
+                        </p>
                     </div>
                 </div>
                 <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes3">
                     <div class="card-body">
                         <p class="card-text" id="like3"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numlikes3"></p>
+                        <p class="card-text">
+                            <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numlikes3"></small>
+                        </p>
                     </div>
                 </div>
                 <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes4">
                     <div class="card-body">
                         <p class="card-text" id="like4"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numlikes4"></p>
+                        <p class="card-text">
+                            <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numlikes4"></small>
+                        </p>
                     </div>
                 </div>
                 <div class="card mb-4">
                     <img class="card-img-top" alt="Card image cap" id="piclikes5">
                     <div class="card-body">
                         <p class="card-text" id="like5"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numlikes5"></p>
+                        <p class="card-text">
+                            <img src="./images/heart.png" width="15" height="15" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numlikes5"></small>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -136,10 +144,10 @@
                     <img class="card-img-top" alt="Card image cap" id="picretweets1">
                     <div class="card-body">
                         <p class="card-text" id="retweet1"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/retweet.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numretweets1"></p>
+                        <p class="card-text">
+                            <img src="./images/retweet.png" width="20" height="20" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numretweets1"></small>
+                        </p>
                     </div>
                 </div>
 
@@ -147,10 +155,10 @@
                     <img class="card-img-top" alt="Card image cap" id="picretweets2">
                     <div class="card-body">
                         <p class="card-text" id="retweet2"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/retweet.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numretweets2"></p>
+                        <p class="card-text">
+                            <img src="./images/retweet.png" width="20" height="20" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numretweets2"></small>
+                        </p>
                     </div>
                 </div>
 
@@ -158,10 +166,10 @@
                     <img class="card-img-top" alt="Card image cap" id="picretweets3">
                     <div class="card-body">
                         <p class="card-text" id="retweet3"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/retweet.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numretweets3"></p>
+                        <p class="card-text">
+                            <img src="./images/retweet.png" width="20" height="20" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numretweets3"></small>
+                        </p>
                     </div>
                 </div>
 
@@ -169,10 +177,10 @@
                     <img class="card-img-top" alt="Card image cap" id="picretweets4">
                     <div class="card-body">
                         <p class="card-text" id="retweet4"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/retweet.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numretweets4"></p>
+                        <p class="card-text">
+                            <img src="./images/retweet.png" width="20" height="20" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numretweets4"></small>
+                        </p>
                     </div>
                 </div>
 
@@ -180,10 +188,10 @@
                     <img class="card-img-top" alt="Card image cap" id="picretweets5">
                     <div class="card-body">
                         <p class="card-text" id="retweet5"></p>
-                    </div>
-                    <div class="card-footer">
-                        <img src="./images/retweet.png" width="15" height="15" class="d-inline-block align-center" alt="">
-                        <p id="numretweets5"></p>
+                        <p class="card-text">
+                            <img src="./images/retweet.png" width="15" height="15" class="d-inline-block align-center" alt="">
+                            <small class="text-muted" id="numretweets5"></small>
+                        </p>
                     </div>
                 </div>
             </div>

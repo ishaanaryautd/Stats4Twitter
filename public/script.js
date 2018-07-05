@@ -10,7 +10,6 @@ $("#submit").click(function (e) {
 		method: "GET",
 		dataType: "json",
 		success: function (result) {
-			console.log(result);
 			if (Object.keys(result).length == 0) {
 				$("#loading").hide();
 				console.log("does not exist");
@@ -68,6 +67,9 @@ $("#submit").click(function (e) {
 				document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[0].retweets;
 				document.getElementById("avgLikes").innerHTML = result.AverageLikes + " likes";
 				document.getElementById("avgRetweets").innerHTML = result.AverageRetweets + " retweets";
+				document.getElementById("name").innerHTML = result.Name;
+				document.getElementById("profScreenName").innerHTML = "(@" + result.ScreenName + ")";
+				document.getElementById("profPic").src = result.ProfilePic;
 
 				if (result.Top5RetweetedTweets[4].imageURL != null) {
 					document.getElementById("picretweets1").src = result.Top5RetweetedTweets[4].imageURL;
@@ -124,6 +126,9 @@ $("#submit").click(function (e) {
 						},
 						vAxis: {
 							title: 'Percentage'
+						},
+						legend: {
+							position: 'none'
 						}
 					};
 
@@ -134,8 +139,8 @@ $("#submit").click(function (e) {
 				$("#loading").hide();
 				$('#likedTweets').css('display', 'block');
 				$('#retweetedTweets').css('display', 'block');
-				$("#avgL").css('display', 'block');
-				$("#avgR").css('display', 'block');
+				$("#avgLR").css('display', 'block');
+				$("#profile").css('display', 'block');
 				$("#tryAgain").css('display', 'block');
 				$("#ibmHeader").css('display', 'block');
 				$(window).resize(function () {
