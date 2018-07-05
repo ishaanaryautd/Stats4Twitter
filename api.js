@@ -34,10 +34,10 @@ function getTweetsByUsername(username){
 function getTweetsByID(ids){
     var Twitter = require('twitter');
     var t = new Twitter({
-        consumer_key: process.env.twitter_consumer_key,
-        consumer_secret: process.env.twitter_consumer_secret,
-        access_token_key: process.env.twitter_access_token_key,
-        access_token_secret: process.env.twitter_access_token_secret
+        consumer_key: 'qpb9DuJtjXe29MexkJiyF01Wg',
+        consumer_secret: 'dIokPh4NHmZZfTkBQqChKYSTg6ujRDhtmA2fAb5woMiChUdTC8',
+        access_token_key: '2609449742-oyn7YcpMbmdo7tvyI9pNVqxe5rvdYR0qBFMxpLN',
+        access_token_secret: '0zyvO9zXRnuOHXqGjlfonYu0AsMCRGa1tqLKVxJApzw0S'
     });
 
     var params = {
