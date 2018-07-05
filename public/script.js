@@ -17,8 +17,8 @@ $("#submit").click(function (e) {
 				let element = document.getElementById("alert");
 				element.insertAdjacentHTML('afterbegin', "Either the user does not exist, or does not have any tweets.");
 			}
-			else {
-
+			else if (Object.keys(result).length > 0) {
+				console.log("here");
 				document.getElementById("profPic").src = result.ProfilePic;
 				document.getElementById("name").innerHTML = result.Name;
 				document.getElementById("profScreenName").innerHTML = "(@" + result.ScreenName + ")";
@@ -149,12 +149,16 @@ $("#submit").click(function (e) {
 						chart.draw(data, options);
 					}
 					$("#ibmHeader").css('display', 'block');
+					$(window).resize(function () {
+						drawBasic();
+					});
 				}
-
 				else {
 					console.log("text was less no watson");
 				}
+
 				$("#loading").hide();
+
 				if (has5tweets == "yes") {
 					$('#likedTweets').css('display', 'block');
 					$('#retweetedTweets').css('display', 'block');
@@ -162,9 +166,7 @@ $("#submit").click(function (e) {
 				$("#avgLR").css('display', 'block');
 				$("#tryAgain").css('display', 'block');
 				$("#profile").css('display', 'block');
-				$(window).resize(function () {
-					drawBasic();
-				});
+
 			}
 		},
 		error: function () {
