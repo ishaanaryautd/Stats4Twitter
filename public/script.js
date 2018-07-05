@@ -1,7 +1,7 @@
 $("#submit").click(function (e) {
 	e.preventDefault();
+	document.getElementById("usernameForm").style.display = "none";
 	$("#loading").show();
-
 	$.ajax({
 		url: "/data",
 		data: {
@@ -96,12 +96,12 @@ $("#submit").click(function (e) {
 				elem.parentNode.removeChild(elem);
 			}
 
-
 			$("#loading").hide();
 			$('#likedTweets').css('display', 'block');
 			$('#retweetedTweets').css('display', 'block');
 			$("#avgL").css('display', 'block');
 			$("#avgR").css('display', 'block');
+			$("#tryAgain").css('display', 'block');
 		},
 		error: function (err) {
 			console.log("Something went wrong, data could not be fetched " + err);
