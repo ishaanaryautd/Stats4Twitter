@@ -130,16 +130,34 @@ async function callingAPIFunction(username){
         modifiedTweetsForLikes[a[i].id_str] = a[i].favorite_count;
         modifiedTweetsForRetweets[a[i].id_str] = a[i].retweet_count;
     }
+	
+
         
     var sortedByLikes = sortProperties(modifiedTweetsForLikes);
     var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);  
-        
-    for(var i = sortedByLikes.length - 1; i >= sortedByLikes.length - 5; i--){
-        trimTop5Likes.push((sortedByLikes[i])[0]);
-    }
-    for(var i = sortedByRetweets.length - 1; i >= sortedByRetweets.length - 5; i--){
-        trimTop5Retweets.push((sortedByRetweets[i])[0]);
-    }
+	
+	
+	sortedByLikes.reverse();
+	sortedByRetweets.reverse();
+	
+	
+	if(sortedByLikes.length>=5 ){
+		for(var i = 0; i < 5; i++){
+			trimTop5Likes.push((sortedByLikes[i])[0]);
+		}
+		for(var i = 0; i < 5; i++){
+			trimTop5Retweets.push((sortedByRetweets[i])[0]);
+		}
+	}
+    else{
+		for(var i = 0; i < sortedByLikes.length; i++){
+			trimTop5Likes.push((sortedByLikes[i])[0]);
+		}
+		for(var i = 0; i < sortedByRetweets.length; i++){
+			trimTop5Retweets.push((sortedByRetweets[i])[0]);
+		}
+	}
+
 	
 	var top5LikesIDs = "";
     for(var i = 0; i < trimTop5Likes.length; i++){
@@ -149,6 +167,8 @@ async function callingAPIFunction(username){
 
 	// *** Call a function to get the top 5 tweets by likes here **** Use var b
     var b = await getTweetsByID(top5LikesIDs);
+
+	
     return_data["Top5LikedTweets"] = [];
     for(var i = 0; i < b.length; i++){
         if(b[i].extended_entities == null){
@@ -166,6 +186,10 @@ async function callingAPIFunction(username){
             };
         }
     }
+	
+	return_data["Top5LikedTweets"].sort(function(a, b){
+		return b.likes-a.likes;
+	})
 
     var top5RetweetsIDs = "";
     for(var i = 0; i < trimTop5Retweets.length; i++){
@@ -175,6 +199,8 @@ async function callingAPIFunction(username){
 
 	// *** Call a function to get the top 5 tweets by retweets here **** Use var c
 	var c = await getTweetsByID(top5RetweetsIDs);
+	
+	
     return_data["Top5RetweetedTweets"] = [];
     for(var i = 0; i < c.length; i++){
         if(c[i].extended_entities == null){
@@ -192,15 +218,22 @@ async function callingAPIFunction(username){
             };
         }
     }
-	//Send tweets to watson
-    var d = await watson(tweetText);
-   
-	return_data[(((d.personality)[0]).name)] = (((d.personality)[0]).percentile);
-	return_data[(((d.personality)[1]).name)] = (((d.personality)[1]).percentile);
-	return_data[(((d.personality)[2]).name)] = (((d.personality)[2]).percentile);
-	return_data[(((d.personality)[3]).name)] = (((d.personality)[3]).percentile);
-    return_data[(((d.personality)[4]).name)] = (((d.personality)[4]).percentile);
-
+	
+	return_data["Top5RetweetedTweets"].sort(function(a, b){
+		return b.retweets-a.retweets;
+	});
+	
+	if(tweetText.length>100)
+	{
+		//Send tweets to watson
+		var d = await watson(tweetText);
+	   
+		return_data[(((d.personality)[0]).name)] = (((d.personality)[0]).percentile);
+		return_data[(((d.personality)[1]).name)] = (((d.personality)[1]).percentile);
+		return_data[(((d.personality)[2]).name)] = (((d.personality)[2]).percentile);
+		return_data[(((d.personality)[3]).name)] = (((d.personality)[3]).percentile);
+		return_data[(((d.personality)[4]).name)] = (((d.personality)[4]).percentile);
+	}
     return return_data;  
 }
 
