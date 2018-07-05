@@ -115,7 +115,10 @@ $("#submit").click(function (e) {
 					has5tweets = "yes";
 				}
 				else {
-					console.log("There arent 5 tweets");
+					$("#loading").hide();
+					$("#alert").css('display', 'block');
+					let element = document.getElementById("alert");
+					element.insertAdjacentHTML('afterbegin', "The user has less than 5 tweets, so statistics cannot be shown.");
 				}
 
 				if (result.hasOwnProperty('Openness')) {
@@ -154,7 +157,10 @@ $("#submit").click(function (e) {
 					});
 				}
 				else {
-					console.log("text was less no watson");
+					$("#loading").hide();
+					$("#alert").css('display', 'block');
+					let element = document.getElementById("alert");
+					element.insertAdjacentHTML('afterbegin', "The user has less than 5 tweets, so statistics cannot be shown.");
 				}
 
 				$("#loading").hide();
