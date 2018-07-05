@@ -13,16 +13,18 @@ $("#submit").click(function (e) {
 		success: function (result) {
 			if (Object.keys(result).length == 0) {
 				$("#loading").hide();
-				console.log("profile does not exist or has 0 tweets(not including retweets");
+				$("#alert").css('display', 'block');
+				let element = document.getElementById("alert");
+				element.insertAdjacentHTML('afterbegin', "Either the user does not exist, or does not have any tweets.");
 			}
 			else {
-				
+
 				document.getElementById("profPic").src = result.ProfilePic;
 				document.getElementById("name").innerHTML = result.Name;
 				document.getElementById("profScreenName").innerHTML = "(@" + result.ScreenName + ")";
 				document.getElementById("avgLikes").innerHTML = result.AverageLikes + " likes";
 				document.getElementById("avgRetweets").innerHTML = result.AverageRetweets + " retweets";
-					
+
 				if (result.Top5LikedTweets.length == 5) {
 					document.getElementById("like1").innerHTML = result.Top5LikedTweets[0].tweet;
 					document.getElementById("like2").innerHTML = result.Top5LikedTweets[1].tweet;
@@ -76,8 +78,8 @@ $("#submit").click(function (e) {
 					document.getElementById("numretweets3").innerHTML = result.Top5RetweetedTweets[2].retweets;
 					document.getElementById("numretweets4").innerHTML = result.Top5RetweetedTweets[3].retweets;
 					document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[4].retweets;
-					
-					
+
+
 
 					if (result.Top5RetweetedTweets[0].imageURL != null) {
 						document.getElementById("picretweets1").src = result.Top5RetweetedTweets[0].imageURL;
@@ -117,7 +119,6 @@ $("#submit").click(function (e) {
 				}
 
 				if (result.hasOwnProperty('Openness')) {
-
 					google.charts.load('current', { packages: ['corechart', 'bar'] });
 					google.charts.setOnLoadCallback(drawBasic);
 
@@ -166,8 +167,8 @@ $("#submit").click(function (e) {
 				});
 			}
 		},
-		error: function (err) {
-			console.log("Something went wrong, data could not be fetched " + err);
+		error: function () {
+			console.log("Something went wrong, data could not be fetched ");
 		}
 	});
 })
