@@ -1,3 +1,9 @@
+$("#username").keyup(function (event) {
+	if (event.keyCode == 13) {
+		$("#submit").click();
+	}
+})
+
 $("#submit").click(function (e) {
 	var has5tweets = "no";
 	e.preventDefault();
@@ -12,17 +18,22 @@ $("#submit").click(function (e) {
 		dataType: "json",
 		success: function (result) {
 			if (Object.keys(result).length == 0) {
+				$("#loading").hide();
 				$("#alert").css('display', 'block');
 				let element = document.getElementById("alert");
 				element.insertAdjacentHTML('afterbegin', "Either the user does not exist, or does not have any tweets.");
 			}
 			else if (Object.keys(result).length > 0) {
 				console.log("here");
-				document.getElementById("profPic").src = result.ProfilePic;
+				var url = result.ProfilePic;
+				url = url.replace("_normal", "");
+				document.getElementById("profPic").src = url;
 				document.getElementById("name").innerHTML = result.Name;
 				document.getElementById("profScreenName").innerHTML = "(@" + result.ScreenName + ")";
-				document.getElementById("avgLikes").innerHTML = result.AverageLikes + " likes";
-				document.getElementById("avgRetweets").innerHTML = result.AverageRetweets + " retweets";
+				document.getElementById("avgLikes").innerHTML = Math.round(result.AverageLikes) + " likes";
+				document.getElementById("avgRetweets").innerHTML = Math.round(result.AverageRetweets) + " retweets";
+				document.getElementById("followers").innerHTML = result.Followers;
+				document.getElementById("following").innerHTML = result.Following;
 
 				if (result.Top5LikedTweets.length == 5) {
 					document.getElementById("like1").innerHTML = result.Top5LikedTweets[0].tweet;
@@ -137,10 +148,13 @@ $("#submit").click(function (e) {
 								viewWindow: {
 									min: [7, 30, 0],
 									max: [17, 30, 0]
-								}
+								},
 							},
 							vAxis: {
 								title: 'Percentage'
+							},
+							legend: {
+								position: 'none'
 							}
 						}
 
@@ -154,12 +168,11 @@ $("#submit").click(function (e) {
 					if (has5tweets == "no") {
 						$("#alert").css('display', 'block');
 						let element = document.getElementById("alert");
-						element.insertAdjacentHTML('afterbegin', "Top 5 cannot be shown but can show personality");
+						element.insertAdjacentHTML('afterbegin', "The number of the user's tweets does not meet the minimum required to show the Top 5 tweets.");
 						//Put what u like to convey to user that cant show top 5 tweets but WE CAN show personality insights 
 					}
 				}
 				else {
-
 					document.getElementById("chart_div").style.display = "none";
 					$("#alert").css('display', 'block');
 
@@ -170,7 +183,7 @@ $("#submit").click(function (e) {
 					}
 					else {
 						let element = document.getElementById("alert");
-						element.insertAdjacentHTML('afterbegin', "The number of the user's tweets does not meet the minimum requirement to show tweet statistics, nor IBM Watson's Personality Insights.");
+						element.insertAdjacentHTML('afterbegin', "The number of the user's tweets does not meet the minimum requirement to show the Top 5 Tweets, nor IBM Watson's Personality Insights.");
 						//Put what u like to convey to user that we cant show top 5 or personality insights. cant show either
 					}
 				}
