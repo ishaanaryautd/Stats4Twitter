@@ -16,6 +16,13 @@ $("#submit").click(function (e) {
 				console.log("profile does not exist or has 0 tweets(not including retweets");
 			}
 			else {
+				
+				document.getElementById("profPic").src = result.ProfilePic;
+				document.getElementById("name").innerHTML = result.Name;
+				document.getElementById("profScreenName").innerHTML = "(@" + result.ScreenName + ")";
+				document.getElementById("avgLikes").innerHTML = result.AverageLikes + " likes";
+				document.getElementById("avgRetweets").innerHTML = result.AverageRetweets + " retweets";
+					
 				if (result.Top5LikedTweets.length == 5) {
 					document.getElementById("like1").innerHTML = result.Top5LikedTweets[0].tweet;
 					document.getElementById("like2").innerHTML = result.Top5LikedTweets[1].tweet;
@@ -69,11 +76,8 @@ $("#submit").click(function (e) {
 					document.getElementById("numretweets3").innerHTML = result.Top5RetweetedTweets[2].retweets;
 					document.getElementById("numretweets4").innerHTML = result.Top5RetweetedTweets[3].retweets;
 					document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[4].retweets;
-					document.getElementById("avgLikes").innerHTML = result.AverageLikes + " likes";
-					document.getElementById("avgRetweets").innerHTML = result.AverageRetweets + " retweets";
-					document.getElementById("profPic").src = result.ProfilePic;
-					document.getElementById("name").innerHTML = result.Name;
-					document.getElementById("profScreenName").innerHTML = "(@" + result.ScreenName + ")";
+					
+					
 
 					if (result.Top5RetweetedTweets[0].imageURL != null) {
 						document.getElementById("picretweets1").src = result.Top5RetweetedTweets[0].imageURL;
@@ -149,7 +153,6 @@ $("#submit").click(function (e) {
 				else {
 					console.log("text was less no watson");
 				}
-				console.log(has5tweets);
 				$("#loading").hide();
 				if (has5tweets == "yes") {
 					$('#likedTweets').css('display', 'block');

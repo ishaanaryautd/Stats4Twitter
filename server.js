@@ -13,7 +13,6 @@ app.get('/data', function (req, res, next) {
 	var api = require('./api.js');
 	api.callingAPIFunction(req.query.twitterUsername).then(function (data) {
 		res.json(data);
-		console.log(data.ProfilePic);
 
 	}).catch(function (err) {
 		console.log(err);
