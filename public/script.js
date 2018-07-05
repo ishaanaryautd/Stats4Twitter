@@ -16,9 +16,7 @@ $("#submit").click(function (e) {
 				console.log("profile does not exist or has 0 tweets(not including retweets");
 			}
 			else {
-
 				if (result.Top5LikedTweets.length == 5) {
-
 					document.getElementById("like1").innerHTML = result.Top5LikedTweets[0].tweet;
 					document.getElementById("like2").innerHTML = result.Top5LikedTweets[1].tweet;
 					document.getElementById("like3").innerHTML = result.Top5LikedTweets[2].tweet;
@@ -152,9 +150,9 @@ $("#submit").click(function (e) {
 					$('#likedTweets').css('display', 'block');
 					$('#retweetedTweets').css('display', 'block');
 				}
-				$("#avgL").css('display', 'block');
 				$("#avgR").css('display', 'block');
 				$("#tryAgain").css('display', 'block');
+				$("#profile").css('display', 'block');
 				$(window).resize(function () {
 					drawBasic();
 				});
