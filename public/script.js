@@ -3,6 +3,11 @@ $("#username").keyup(function (event) {
 		$("#submit").click();
 	}
 })
+$("#usernameForm").validate({
+	username: {
+		required: true
+	}
+})
 
 $("#submit").click(function (e) {
 	var has5tweets = "no";

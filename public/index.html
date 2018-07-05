@@ -23,22 +23,24 @@
         </a>
     </nav>
     <div class="container">
-        <div class="row" id="usernameForm">
-            <div class="col-sm-4 col-xs-12 text-xs-center">
-                <h3>Enter your Twitter handle </h3>
-            </div>
-            <div class="col-sm-5 col-xs-5">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">@</span>
+        <form id="usernameForm">
+            <div class="form-row">
+                <div class="col-sm-4 col-xs-12 text-xs-center">
+                    <h3>Enter your Twitter handle </h3>
+                </div>
+                <div class="col-sm-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                        </div>
+                        <input id="username" type="text" class="form-control" placeholder="Username" required>
                     </div>
-                    <input id="username" type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="col-sm-3 col-xs-4">
+                    <button class="btn custom-btn btn-block" id="submit"> Submit </button>
                 </div>
             </div>
-            <div class="col-sm-3 col-xs-4">
-                <button class="btn custom-btn btn-block" id="submit"> Submit </button>
-            </div>
-        </div>
+        </form>
         <div class="alert alert-warning alert-dismissible fade show" style="display: none" role="alert" id="alert">
             <button type="button" class="close" data-dismiss="alert" id="closeAlert" aria-label="Close" onClick="window.location.reload()">
                 <span aria-hidden="true">&times;</span>
