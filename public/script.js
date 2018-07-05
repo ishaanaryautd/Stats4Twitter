@@ -11,11 +11,11 @@ $("#submit").click(function (e) {
 		dataType: "json",
 		success: function (result) {
 			console.log(result);
-			if(Object.keys(result).length == 0){
+			if (Object.keys(result).length == 0) {
 				$("#loading").hide();
 				console.log("does not exist");
 			}
-			else{
+			else {
 				document.getElementById("like1").innerHTML = result.Top5LikedTweets[4].tweet;
 				document.getElementById("like2").innerHTML = result.Top5LikedTweets[3].tweet;
 				document.getElementById("like3").innerHTML = result.Top5LikedTweets[2].tweet;
@@ -100,48 +100,47 @@ $("#submit").click(function (e) {
 					var elem = document.getElementById('picretweets5');
 					elem.parentNode.removeChild(elem);
 				}
-				
-				google.charts.load('current', {packages: ['corechart', 'bar']});
+
+				google.charts.load('current', { packages: ['corechart', 'bar'] });
 				google.charts.setOnLoadCallback(drawBasic);
 
-				
-				function drawBasic(){
-
+				function drawBasic() {
 					var data = google.visualization.arrayToDataTable([
 						['Personality', 'Percentage', { role: 'style' }],
-						['Openness', result.Openness * 100, '#b87333'],            // RGB value
-						['Conscientiousness', result.Conscientiousness * 100, 'silver'],            // English color name
-						['Extraversion', result.Extraversion * 100, 'gold'],
-						['Agreeableness', result.Agreeableness * 100, 'color: #e5e4e2' ],
-						['Emotional range', result["Emotional range"] * 100, 'color: #e5e4e2' ] // CSS-style declaration
+						['Openness', result.Openness * 100, '#1AA6D9'],            // RGB value
+						['Conscientiousness', result.Conscientiousness * 100, '#1AA6D9'],
+						['Extraversion', result.Extraversion * 100, '#1AA6D9'],
+						['Agreeableness', result.Agreeableness * 100, 'color: #1AA6D9'],
+						['Emotional range', result["Emotional range"] * 100, 'color: #1AA6D9'] // CSS-style declaration
 					]);
 
 					var options = {
-						title: 'Personality Insights from IBM Watson',
 						hAxis: {
-						  title: 'Personality Trait',
-						  viewWindow: {
-							min: [7, 30, 0],
-							max: [17, 30, 0]
-						  }
+							title: 'Personality Trait',
+							viewWindow: {
+								min: [7, 30, 0],
+								max: [17, 30, 0]
+							}
 						},
 						vAxis: {
-						  title: 'Percentage'
+							title: 'Percentage'
 						}
 					};
 
-					var chart = new google.visualization.ColumnChart(
-					document.getElementById('chart_div'));
-
+					var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
 					chart.draw(data, options);
 				}
-				
+
 				$("#loading").hide();
 				$('#likedTweets').css('display', 'block');
 				$('#retweetedTweets').css('display', 'block');
 				$("#avgL").css('display', 'block');
 				$("#avgR").css('display', 'block');
 				$("#tryAgain").css('display', 'block');
+				$("#ibmHeader").css('display', 'block');
+				$(window).resize(function () {
+					drawBasic();
+				});
 			}
 		},
 		error: function (err) {

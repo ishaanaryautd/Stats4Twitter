@@ -24,9 +24,9 @@
         </a>
     </nav>
     <div class="container">
-		<div class="row" id="tryAgain" style="display: none;">
-			<button class="btn custom-btn btn-block" onClick="window.location.reload()"> Try again for a different user </button>
-		</div>
+        <div class="row" id="tryAgain" style="display: none;">
+            <button class="btn custom-btn btn-block" onClick="window.location.reload()"> Try again for a different user </button>
+        </div>
         <div class="row" id="usernameForm">
             <div class="col-sm-4 col-xs-3">
                 <h3>Enter your Twitter handle </h3>
@@ -188,9 +188,16 @@
                 </div>
             </div>
         </div>
-		<div class = "row" id="chart_div"></div> 
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3 style="display: none" id="ibmHeader">Personality Traits from IBM Watson</h3>
+                <div id="chart_div" class="chart"></div>
+            </div>
+
+        </div>
     </div>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>

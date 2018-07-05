@@ -17,3 +17,7 @@
 .navbar-custom .navbar-brand:hover {
   color: #F5F5F5;
 }
+.chart {
+  width: 100%; 
+  min-height: 450px;
+}
