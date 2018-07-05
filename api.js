@@ -49,6 +49,7 @@ function getTweetsByID(ids){
     return new Promise((resolve, reject) => {
         t.get('statuses/lookup', params, (err, data) => {
             if (err) {
+				console.log(err);
                 reject(err);
             } else {
                 resolve(data);
@@ -98,6 +99,9 @@ async function callingAPIFunction(username){
 	var return_data = {};
 	
     var a = await getTweetsByUsername(username);
+
+	if(Object.keys(a).length == 0)
+		return return_data;
 	
 	return_data["Following"] = a[0].user.friends_count;
 	return_data["Followers"] = a[0].user.followers_count;
