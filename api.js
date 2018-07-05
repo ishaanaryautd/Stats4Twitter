@@ -229,8 +229,9 @@ async function callingAPIFunction(username) {
     return_data["Top5RetweetedTweets"].sort(function (a, b) {
         return b.retweets - a.retweets;
     });
-
-    if (tweetText.length > 100) {
+	var copyTweetText = tweetText;
+	var words = (copyTweetText.split(" ").length - 1);
+    if (words > 105) {
         //Send tweets to watson
         var d = await watson(tweetText);
 

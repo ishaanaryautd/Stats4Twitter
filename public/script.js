@@ -12,7 +12,6 @@ $("#submit").click(function (e) {
 		dataType: "json",
 		success: function (result) {
 			if (Object.keys(result).length == 0) {
-				$("#loading").hide();
 				$("#alert").css('display', 'block');
 				let element = document.getElementById("alert");
 				element.insertAdjacentHTML('afterbegin', "Either the user does not exist, or does not have any tweets.");
@@ -115,10 +114,7 @@ $("#submit").click(function (e) {
 					has5tweets = "yes";
 				}
 				else {
-					$("#loading").hide();
-					$("#alert").css('display', 'block');
-					let element = document.getElementById("alert");
-					element.insertAdjacentHTML('afterbegin', "The user has less than 5 tweets, so statistics cannot be shown.");
+					//less than 5 tweets 
 				}
 
 				if (result.hasOwnProperty('Openness')) {
@@ -155,12 +151,28 @@ $("#submit").click(function (e) {
 					$(window).resize(function () {
 						drawBasic();
 					});
+					if (has5tweets == "no") {
+						$("#alert").css('display', 'block');
+						let element = document.getElementById("alert");
+						element.insertAdjacentHTML('afterbegin', "Top 5 cannot be shown but can show personality");
+						//Put what u like to convey to user that cant show top 5 tweets but WE CAN show personality insights 
+					}
 				}
 				else {
-					$("#loading").hide();
+
+					document.getElementById("chart_div").style.display = "none";
 					$("#alert").css('display', 'block');
-					let element = document.getElementById("alert");
-					element.insertAdjacentHTML('afterbegin', "The user has less than 5 tweets, so statistics cannot be shown.")
+
+					if (has5tweets == "yes") {
+						let element = document.getElementById("alert");
+						element.insertAdjacentHTML('afterbegin', "The number of the user's tweets does not meet the minimum required by IBM Watson's Personality Insights.");
+						//Put what u like to convey to user that WE CAN show top 5 tweets but we cant show personality insights
+					}
+					else {
+						let element = document.getElementById("alert");
+						element.insertAdjacentHTML('afterbegin', "The number of the user's tweets does not meet the minimum requirement to show tweet statistics, nor IBM Watson's Personality Insights.");
+						//Put what u like to convey to user that we cant show top 5 or personality insights. cant show either
+					}
 				}
 
 				$("#loading").hide();
