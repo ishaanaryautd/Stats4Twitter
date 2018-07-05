@@ -98,6 +98,12 @@ async function callingAPIFunction(username){
 	var return_data = {};
 	
     var a = await getTweetsByUsername(username);
+	
+	return_data["Following"] = a[0].user.friends_count;
+	return_data["Followers"] = a[0].user.followers_count;
+	return_data["TotalTweets"] = a[0].user.statuses_count;
+	return_data["ProfilePic"] = a[0].user.profile_image_url;
+	return_data["Name"] = a[0].user.name;
 
     for(var i = 0; i < a.length; i++){
         tweetText = tweetText + " " + a[i].full_text;

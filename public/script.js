@@ -95,7 +95,42 @@ $("#submit").click(function (e) {
 				var elem = document.getElementById('picretweets5');
 				elem.parentNode.removeChild(elem);
 			}
+			
+			google.charts.load('current', {packages: ['corechart', 'bar']});
+			google.charts.setOnLoadCallback(drawBasic);
 
+			
+			function drawBasic(){
+
+				var data = google.visualization.arrayToDataTable([
+					['Personality', 'Percentage', { role: 'style' }],
+					['Openness', result.Openness * 100, '#b87333'],            // RGB value
+					['Conscientiousness', result.Conscientiousness * 100, 'silver'],            // English color name
+					['Extraversion', result.Extraversion * 100, 'gold'],
+					['Agreeableness', result.Agreeableness * 100, 'color: #e5e4e2' ],
+					['Emotional range', result["Emotional range"] * 100, 'color: #e5e4e2' ] // CSS-style declaration
+				]);
+
+				var options = {
+					title: 'Personality Insights from IBM Watson',
+					hAxis: {
+					  title: 'Personality Trait',
+					  viewWindow: {
+						min: [7, 30, 0],
+						max: [17, 30, 0]
+					  }
+					},
+					vAxis: {
+					  title: 'Percentage'
+					}
+				};
+
+				var chart = new google.visualization.ColumnChart(
+				document.getElementById('chart_div'));
+
+				chart.draw(data, options);
+			}
+			
 			$("#loading").hide();
 			$('#likedTweets').css('display', 'block');
 			$('#retweetedTweets').css('display', 'block');

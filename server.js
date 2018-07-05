@@ -13,7 +13,7 @@ app.get('/data', function(req,res,next){
     var api = require('./api.js');
 	api.callingAPIFunction(req.query.twitterUsername).then(function(data){
 		res.json(data);
-		console.log(data);
+		//console.log(data);
 	}).catch(function(err){
 		console.log(err);
 	});
