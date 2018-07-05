@@ -23,7 +23,10 @@ function getTweetsByUsername(username) {
     return new Promise((resolve, reject) => {
         t.get('statuses/user_timeline', params, (err, data) => {
             if (err) {
-                reject(err);
+				//console.log(err);
+				//console.log(err.hasOwnProperty(code));
+				resolve(err);
+                //reject(err);
             } else {
                 resolve(data);
             }
@@ -49,7 +52,6 @@ function getTweetsByID(ids) {
     return new Promise((resolve, reject) => {
         t.get('statuses/lookup', params, (err, data) => {
             if (err) {
-                console.log(err);
                 reject(err);
             } else {
                 resolve(data);
@@ -99,7 +101,11 @@ async function callingAPIFunction(username) {
     var return_data = {};
 
     var a = await getTweetsByUsername(username);
-
+		
+	if(!a.hasOwnProperty("user")){
+		return return_data;
+	}
+	
     if (Object.keys(a).length == 0)
         return return_data;
 
