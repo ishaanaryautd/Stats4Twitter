@@ -33,7 +33,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">@</span>
                         </div>
-                        <input id="username" type="text" class="form-control" placeholder="Username" required="required">
+                        <input id="username" type="text" class="form-control" placeholder="Username">
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-4">
@@ -41,27 +41,25 @@
                 </div>
             </div>
         </form>
-        <div class="alert alert-warning alert-dismissible fade show" style="display: none" role="alert" id="alert">
-            <button type="button" class="close" data-dismiss="alert" id="closeAlert" aria-label="Close" onclick="window.location.reload()">
-				<span id = "alertText" aria-hidden="true">&times;</span>
+        <div class="alert alert-warning alert-dismissible fade show" style="display: none; width:100%" role="alert" id="alert">
+            <p id="alertText"></p>
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        </br>
-        </br>
-
         <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <div id="loading" style="display: none;">
+            <div class="col-sm-4" id="loading" style="display: none;">
+                <div>
                     <img id="loading-image" src="images/loading.gif" alt="Loading..." style="margin: auto;    
                     display: block; width:50px;" class="img-responsive" />
                 </div>
             </div>
-            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="display: none;"></div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 col-12" id="profile" style="display: none;">
+        <div class="row pb-5">
+            <div class="col-lg-5 col-md-6 col-xs-5" id="profile" style="display: none;">
                 <div class="card">
                     <img class="card-img" id="profPic" alt="Card image">
                     <div class="card-img-overlay">
@@ -70,34 +68,49 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 col-12" id="avgLR" style="display: none;">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Followers</h5>
-                        <p class="card-text" id="followers"></p>
+            <div class="col">
+                <div class="row">
+                    <div class="col" id="followCount" style="display: none;">
+                        <div class="card-group">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Followers</h5>
+                                    <p class="card-text" id="followers"></p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Following</h5>
+                                    <p class="card-text" id="following"></p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Following</h5>
-                        <p class="card-text" id="following"></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Average Likes Per Tweet</h5>
-                        <p class="card-text" id="avgLikes"></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Average Retweets Per Tweet</h5>
-                        <p class="card-text" id="avgRetweets"></p>
+                <div class="row">
+                    <div class="col" id="avgLR" style="display: none;">
+                        <div class="card-group">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Average Likes Per Tweet</h5>
+                                    <p class="card-text" id="avgLikes"></p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Average Retweets Per Tweet</h5>
+                                    <p class="card-text" id="avgRetweets"></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
-        <br>
+
         <div class="row">
             <div id="likedTweets" class="col-sm-6" style="display: none;">
                 <h3>Top 5 Liked Tweets</h3>
