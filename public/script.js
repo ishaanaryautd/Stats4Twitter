@@ -26,7 +26,7 @@ $("#submit").click(function (e) {
 		method: "GET",
 		dataType: "json",
 		success: function (result) {
-			if (Object.keys(result).length == 0) {
+			if ((Object.keys(result).length == 0) || (result.hasOwnProperty("errors"))) {
 				$("#loading").hide();
 				$("#alert").css('display', 'block');
 				let element = document.getElementById("alert");

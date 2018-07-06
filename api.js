@@ -5,6 +5,7 @@ module.exports = {
     watson: watson,
     callingAPIFunction: callingAPIFunction
 }
+
 function getTweetsByUsername(username) {
     var Twitter = require('twitter');
     var t = new Twitter({
@@ -25,7 +26,7 @@ function getTweetsByUsername(username) {
             if (err) {
                 //console.log(err);
                 //console.log(err.hasOwnProperty(code));
-                resolve(err);
+                resolve(data);
                 //reject(err);
             } else {
                 resolve(data);
@@ -101,10 +102,11 @@ async function callingAPIFunction(username) {
     var return_data = {};
 
     var a = await getTweetsByUsername(username);
-
-    // if(!a.hasOwnProperty("user")){
-    // 	return return_data;
-    // }
+	
+	if(a.hasOwnProperty("errors")){
+		return_data["errors"] = "username does not exist or something else with twitter api";
+		return return_data;
+	}
 
     if (Object.keys(a).length == 0)
         return return_data;
@@ -137,8 +139,6 @@ async function callingAPIFunction(username) {
         modifiedTweetsForLikes[a[i].id_str] = a[i].favorite_count;
         modifiedTweetsForRetweets[a[i].id_str] = a[i].retweet_count;
     }
-
-
 
     var sortedByLikes = sortProperties(modifiedTweetsForLikes);
     var sortedByRetweets = sortProperties(modifiedTweetsForRetweets);
