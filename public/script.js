@@ -27,10 +27,11 @@ $("#submit").click(function (e) {
 		dataType: "json",
 		success: function (result) {
 			if ((Object.keys(result).length == 0) || (result.hasOwnProperty("errors"))) {
-				$("#loading").hide();
 				$("#alert").css('display', 'block');
 				let element = document.getElementById("alert");
 				element.insertAdjacentHTML('afterbegin', "Either the user does not exist, or does not have any tweets.");
+				$("#tryAgain").css('display', 'block');
+				$("#loading").hide();
 			}
 			else if (Object.keys(result).length > 0) {
 				console.log("here");
