@@ -102,11 +102,11 @@ async function callingAPIFunction(username) {
     var return_data = {};
 
     var a = await getTweetsByUsername(username);
-	
-	if(a.hasOwnProperty("errors")){
-		return_data["errors"] = "username does not exist or something else with twitter api";
-		return return_data;
-	}
+
+    if (a.hasOwnProperty("errors")) {
+        return_data["errors"] = "username does not exist or something else with twitter api";
+        return return_data;
+    }
 
     if (Object.keys(a).length == 0)
         return return_data;
@@ -178,18 +178,23 @@ async function callingAPIFunction(username) {
 
     return_data["Top5LikedTweets"] = [];
     for (var i = 0; i < b.length; i++) {
+        var tweetDate = b[i].created_at;
+        tweetDate = tweetDate.split(' ');
+        var date = tweetDate[1] + " " + tweetDate[2] + " " + tweetDate[5];
         if (b[i].extended_entities == null) {
             return_data["Top5LikedTweets"][i] = {
                 tweet: b[i].full_text,
                 likes: b[i].favorite_count,
-                imageURL: null
+                imageURL: null,
+                date: date
             };
         }
         else {
             return_data["Top5LikedTweets"][i] = {
                 tweet: b[i].full_text,
                 likes: b[i].favorite_count,
-                imageURL: b[i].extended_entities.media[0].media_url
+                imageURL: b[i].extended_entities.media[0].media_url,
+                date: date
             };
         }
     }
@@ -210,18 +215,23 @@ async function callingAPIFunction(username) {
 
     return_data["Top5RetweetedTweets"] = [];
     for (var i = 0; i < c.length; i++) {
+        var tweetDate = c[i].created_at;
+        tweetDate = tweetDate.split(' ');
+        var date = tweetDate[1] + " " + tweetDate[2] + " " + tweetDate[5];
         if (c[i].extended_entities == null) {
             return_data["Top5RetweetedTweets"][i] = {
                 tweet: c[i].full_text,
-                retweets: b[i].retweet_count,
-                imageURL: null
+                retweets: c[i].retweet_count,
+                imageURL: null,
+                date: date
             };
         }
         else {
             return_data["Top5RetweetedTweets"][i] = {
                 tweet: c[i].full_text,
-                retweets: b[i].retweet_count,
-                imageURL: c[i].extended_entities.media[0].media_url
+                retweets: c[i].retweet_count,
+                imageURL: c[i].extended_entities.media[0].media_url,
+                date: date
             };
         }
     }
@@ -229,8 +239,8 @@ async function callingAPIFunction(username) {
     return_data["Top5RetweetedTweets"].sort(function (a, b) {
         return b.retweets - a.retweets;
     });
-	var copyTweetText = tweetText;
-	var words = (copyTweetText.split(" ").length - 1);
+    var copyTweetText = tweetText;
+    var words = (copyTweetText.split(" ").length - 1);
     if (words > 105) {
         //Send tweets to watson
         var d = await watson(tweetText);

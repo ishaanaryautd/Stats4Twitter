@@ -70,6 +70,11 @@ $("#submit").click(function (e) {
 						document.getElementById("numlikes3").innerHTML = result.Top5LikedTweets[2].likes;
 						document.getElementById("numlikes4").innerHTML = result.Top5LikedTweets[3].likes;
 						document.getElementById("numlikes5").innerHTML = result.Top5LikedTweets[4].likes;
+						document.getElementById("datelikes1").innerHTML = result.Top5LikedTweets[0].date;
+						document.getElementById("datelikes2").innerHTML = result.Top5LikedTweets[1].date;
+						document.getElementById("datelikes3").innerHTML = result.Top5LikedTweets[2].date;
+						document.getElementById("datelikes4").innerHTML = result.Top5LikedTweets[3].date;
+						document.getElementById("datelikes5").innerHTML = result.Top5LikedTweets[4].date;
 
 						if (result.Top5LikedTweets[0].imageURL != null)
 							document.getElementById("piclikes1").src = result.Top5LikedTweets[0].imageURL;
@@ -112,7 +117,11 @@ $("#submit").click(function (e) {
 						document.getElementById("numretweets3").innerHTML = result.Top5RetweetedTweets[2].retweets;
 						document.getElementById("numretweets4").innerHTML = result.Top5RetweetedTweets[3].retweets;
 						document.getElementById("numretweets5").innerHTML = result.Top5RetweetedTweets[4].retweets;
-
+						document.getElementById("dateretweets1").innerHTML = result.Top5RetweetedTweets[0].date;
+						document.getElementById("dateretweets2").innerHTML = result.Top5RetweetedTweets[1].date;
+						document.getElementById("dateretweets3").innerHTML = result.Top5RetweetedTweets[2].date;
+						document.getElementById("dateretweets4").innerHTML = result.Top5RetweetedTweets[3].date;
+						document.getElementById("dateretweets5").innerHTML = result.Top5RetweetedTweets[4].date;
 
 
 						if (result.Top5RetweetedTweets[0].imageURL != null) {
