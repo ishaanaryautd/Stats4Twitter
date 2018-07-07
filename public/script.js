@@ -26,6 +26,8 @@ $("#submit").click(function (e) {
 		$("#alert").show();
 	}
 	else {
+		
+		$("#alert").hide();
 		var has5tweets = "no";
 
 		document.getElementById("usernameForm").style.display = "none";
