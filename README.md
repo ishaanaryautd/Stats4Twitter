@@ -1,3 +1,3 @@
 # TwitterStats
 
-Web App that generated twitter statistics and personality analysis for a Twitter username 
+Web App that generates twitter statistics and personality analysis for a Twitter username 
