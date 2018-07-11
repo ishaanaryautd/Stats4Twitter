@@ -9,10 +9,10 @@ module.exports = {
 function getTweetsByUsername(username) {
     var Twitter = require('twitter');
     var t = new Twitter({
-        consumer_key: ckey,
-        consumer_secret: csecret,
-        access_token_key: akey,
-        access_token_secret: asecret
+        consumer_key: process.env.twitter_consumer_key,
+        consumer_secret: process.env.twitter_consumer_secret,
+        access_token_key: process.env.twitter_access_token_key,
+        access_token_secret: process.env.twitter_access_token_secret
     });
 
     var params = {
@@ -25,7 +25,6 @@ function getTweetsByUsername(username) {
         t.get('statuses/user_timeline', params, (err, data) => {
             if (err) {
                 resolve(data);
-                //reject(err);
             } else {
                 resolve(data);
             }
@@ -36,10 +35,10 @@ function getTweetsByUsername(username) {
 function getTweetsByID(ids) {
     var Twitter = require('twitter');
     var t = new Twitter({
-        consumer_key: ckey,
-        consumer_secret: csecret,
-        access_token_key: akey,
-        access_token_secret: asecret
+        consumer_key: process.env.twitter_consumer_key,
+        consumer_secret: process.env.twitter_consumer_secret,
+        access_token_key: process.env.twitter_access_token_key,
+        access_token_secret: process.env.twitter_access_token_secret
     });
 
     var params = {
@@ -63,9 +62,9 @@ function watson(tweetText) {
 
     const params = {
         'textToAnalyze': tweetText,
-        "url": wurl,
-        "username": wusername,
-        "password": wpassword,
+        "url": "https://gateway.watsonplatform.net/personality-insights/api",
+        "username": process.env.watson_username,
+        "password": process.env.watson_password,
         'use_unauthenticated': false
     }
 

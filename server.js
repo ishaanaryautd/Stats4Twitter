@@ -1,6 +1,5 @@
 const express = require("express");
 var app = express();
-const async = require("async");
 require('dotenv').config();
 
 app.use(express.static('public'));

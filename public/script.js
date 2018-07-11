@@ -4,29 +4,18 @@ $("#username").keyup(function (event) {
 	}
 })
 
-// $('.alert').on('closed.bs.alert', function (e) {
-// 	//e.preventDefault();
-// 	$('.alert').hide();
-// 	window.location.reload();
-// })
-
 $("body").on("click", ".alert", function (e) {
 	$("#alert").hide();
 });
 
 $("#submit").click(function (e) {
-	// if (document.getElementById("alert").style.display == "block") {
-	// 	$("#alert").css('display', 'none');
-	// }
 	e.preventDefault();
 	if (document.getElementById("username").value == "") {
 		let element = document.getElementById("alertText");
 		element.innerHTML = "The username field cannot be empty.";
-		//$("#alert").css('display', 'block');
 		$("#alert").show();
 	}
 	else {
-		
 		$("#alert").hide();
 		var has5tweets = "no";
 
@@ -41,7 +30,6 @@ $("#submit").click(function (e) {
 			dataType: "json",
 			success: function (result) {
 				if ((Object.keys(result).length == 0) || (result.hasOwnProperty("errors"))) {
-
 					let element = document.getElementById("alertText");
 					element.innerHTML = "Either the user does not exist, or does not have any tweets.";
 					$("#alert").show();
@@ -214,12 +202,10 @@ $("#submit").click(function (e) {
 						if (has5tweets == "yes") {
 							let element = document.getElementById("alert");
 							element.insertAdjacentHTML('afterbegin', "The number of the user's tweets does not meet the minimum required by IBM Watson's Personality Insights.");
-							//Put what u like to convey to user that WE CAN show top 5 tweets but we cant show personality insights
 						}
 						else {
 							let element = document.getElementById("alert");
 							element.insertAdjacentHTML('afterbegin', "The number of the user's tweets does not meet the minimum requirement to show the Top 5 Tweets, nor IBM Watson's Personality Insights.");
-							//Put what u like to convey to user that we cant show top 5 or personality insights. cant show either
 						}
 					}
 
@@ -233,8 +219,6 @@ $("#submit").click(function (e) {
 					$("#followCount").css('display', 'block');
 					$("#tryAgain").css('display', 'block');
 					$("#profile").css('display', 'block');
-
-
 				}
 			},
 			error: function () {
