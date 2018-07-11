@@ -59,7 +59,6 @@ function getTweetsByID(ids) {
 }
 
 function watson(tweetText) {
-
     const params = {
         'textToAnalyze': tweetText,
         "url": "https://gateway.watsonplatform.net/personality-insights/api",
