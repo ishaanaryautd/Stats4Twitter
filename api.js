@@ -9,10 +9,10 @@ module.exports = {
 function getTweetsByUsername(username) {
     var Twitter = require('twitter');
     var t = new Twitter({
-        consumer_key: 'qpb9DuJtjXe29MexkJiyF01Wg',
-        consumer_secret: 'dIokPh4NHmZZfTkBQqChKYSTg6ujRDhtmA2fAb5woMiChUdTC8',
-        access_token_key: '2609449742-oyn7YcpMbmdo7tvyI9pNVqxe5rvdYR0qBFMxpLN',
-        access_token_secret: '0zyvO9zXRnuOHXqGjlfonYu0AsMCRGa1tqLKVxJApzw0S'
+        consumer_key: ckey,
+        consumer_secret: csecret,
+        access_token_key: akey,
+        access_token_secret: asecret
     });
 
     var params = {
@@ -24,8 +24,6 @@ function getTweetsByUsername(username) {
     return new Promise((resolve, reject) => {
         t.get('statuses/user_timeline', params, (err, data) => {
             if (err) {
-                //console.log(err);
-                //console.log(err.hasOwnProperty(code));
                 resolve(data);
                 //reject(err);
             } else {
@@ -38,10 +36,10 @@ function getTweetsByUsername(username) {
 function getTweetsByID(ids) {
     var Twitter = require('twitter');
     var t = new Twitter({
-        consumer_key: 'qpb9DuJtjXe29MexkJiyF01Wg',
-        consumer_secret: 'dIokPh4NHmZZfTkBQqChKYSTg6ujRDhtmA2fAb5woMiChUdTC8',
-        access_token_key: '2609449742-oyn7YcpMbmdo7tvyI9pNVqxe5rvdYR0qBFMxpLN',
-        access_token_secret: '0zyvO9zXRnuOHXqGjlfonYu0AsMCRGa1tqLKVxJApzw0S'
+        consumer_key: ckey,
+        consumer_secret: csecret,
+        access_token_key: akey,
+        access_token_secret: asecret
     });
 
     var params = {
@@ -65,9 +63,9 @@ function watson(tweetText) {
 
     const params = {
         'textToAnalyze': tweetText,
-        "url": "https://gateway.watsonplatform.net/personality-insights/api",
-        "username": "6f5ec39d-de4b-4098-af90-01c011a8ac8d",
-        "password": "U5hNHR12tzbm",
+        "url": wurl,
+        "username": wusername,
+        "password": wpassword,
         'use_unauthenticated': false
     }
 
